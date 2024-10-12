@@ -4,4 +4,5 @@
   C:\Users\marvi\AppData\Local\Arm\Packs\Keil\LPC1700_DFP\2.7.2\Device\Include\system_LPC17xx.h \
   ..\Peripherals\include\tests.h ..\Peripherals\include\GLCD.h \
   ..\Peripherals\include\GLCD_S.h ..\Peripherals\include\gpio.h \
-  ..\Peripherals\include\delay.h ..\Peripherals\include\led.h
+  ..\Peripherals\include\delay.h ..\Peripherals\include\led.h \
+  ..\Peripherals\include\keys.h

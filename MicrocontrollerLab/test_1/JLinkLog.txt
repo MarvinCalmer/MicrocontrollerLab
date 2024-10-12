@@ -1,0 +1,64 @@
+T33F0 000:022.068   SEGGER J-Link V7.86c Log File
+T33F0 000:022.772   DLL Compiled: Mar  9 2023 16:16:05
+T33F0 000:022.778   Logging started @ 2024-10-10 14:29
+T33F0 000:022.784 - 22.787ms
+T33F0 000:022.793 JLINK_SetWarnOutHandler(...)
+T33F0 000:022.800 - 0.009ms
+T33F0 000:022.806 JLINK_OpenEx(...)
+T33F0 000:024.170   Firmware: J-Link ARM V8 compiled Nov 28 2014 13:44:46
+T33F0 000:024.456   Firmware: J-Link ARM V8 compiled Nov 28 2014 13:44:46
+T33F0 000:026.699   Hardware: V8.00
+T33F0 000:026.711   S/N: 268006101
+T33F0 000:026.719   OEM: SEGGER-EDU
+T33F0 000:026.727   Feature(s): FlashBP, GDB
+T33F0 000:027.804   TELNET listener socket opened on port 19021
+T33F0 000:027.898   WEBSRV WEBSRV_Init(): Starting webserver thread(s)
+T33F0 000:027.987   WEBSRV Webserver running on local port 19080
+T33F0 000:033.443 - 10.649ms returns "O.K."
+T33F0 000:033.469 JLINK_GetEmuCaps()
+T33F0 000:033.475 - 0.008ms returns 0xB9FF7BBF
+T33F0 000:033.485 JLINK_TIF_GetAvailable(...)
+T33F0 000:033.657 - 0.176ms
+T33F0 000:033.666 JLINK_SetErrorOutHandler(...)
+T33F0 000:033.672 - 0.009ms
+T33F0 000:033.686 JLINK_ExecCommand("ProjectFile = "\\rsns01\grrumt00$\Desktop\MicrocontrollerLab\MicrocontrollerLab\test_1\JLinkSettings.ini"", ...). 
+T33F0 000:051.513   Ref file found at: C:\Keil\ARM\Segger\JLinkDevices.ref
+T33F0 000:051.642   REF file references invalid XML file: C:\Program Files\SEGGER\JLink\JLinkDevices.xml
+T33F0 000:052.470 - 18.791ms returns 0x00
+T33F0 000:052.502 JLINK_ExecCommand("Device = LPC1769", ...). 
+T33F0 000:052.733   Device "LPC1769" selected.
+T33F0 000:054.682 - 2.181ms returns 0x00
+T33F0 000:054.697 JLINK_ExecCommand("DisableConnectionTimeout", ...). 
+T33F0 000:054.705 - 0.003ms returns 0x01
+T33F0 000:054.712 JLINK_GetHardwareVersion()
+T33F0 000:054.717 - 0.008ms returns 80000
+T33F0 000:054.733 JLINK_GetDLLVersion()
+T33F0 000:054.739 - 0.008ms returns 78603
+T33F0 000:054.745 JLINK_GetOEMString(...)
+T33F0 000:054.763 JLINK_GetDLLVersion()
+T33F0 000:054.770 - 0.009ms returns 78603
+T33F0 000:054.776 JLINK_GetCompileDateTime()
+T33F0 000:054.781 - 0.008ms
+T33F0 000:054.790 JLINK_GetFirmwareString(...)
+T33F0 000:054.796 - 0.008ms
+T33F0 000:054.804 JLINK_GetHardwareVersion()
+T33F0 000:054.809 - 0.007ms returns 80000
+T33F0 000:054.818 JLINK_GetSN()
+T33F0 000:054.823 - 0.008ms returns 268006101
+T33F0 000:054.831 JLINK_GetOEMString(...)
+T33F0 000:054.846 JLINK_TIF_Select(JLINKARM_TIF_JTAG)
+T33F0 000:055.519 - 0.676ms returns 0x00
+T33F0 000:055.527 JLINK_HasError()
+T33F0 000:055.538 JLINK_SetSpeed(5000)
+T33F0 000:055.589 - 0.054ms
+T33F0 000:055.597 JLINK_GetIdData(pIdData)
+T33F0 000:055.854   Looking for J-Link GUI Server exe at: C:\Keil\ARM\Segger\JLinkGUIServer.exe
+T33F0 000:056.047   Looking for J-Link GUI Server exe at: \JLinkGUIServer.exe
+T33F0 000:356.334   Failed to connect to J-Link GUI Server.
+T33F0 127:858.569   Connect failed. Resetting via Reset pin and trying again.
+T33F0 128:058.613   RESET (pin 15) high, but should be low. Please check target hardware.
+T33F0 128:119.220 - 128063.703ms
+T33F0 130:583.734 JLINK_Close()
+T33F0 130:598.950 - 15.263ms
+T33F0 130:599.011   
+T33F0 130:599.031   Closed

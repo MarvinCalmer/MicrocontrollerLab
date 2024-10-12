@@ -5,6 +5,7 @@
 ".\objects\delay.o"
 ".\objects\gpio.o"
 ".\objects\led.o"
+".\objects\keys.o"
 ".\objects\startup_lpc17xx.o"
 ".\objects\system_lpc17xx.o"
 --strict --scatter ".\Objects\test.sct"

@@ -18,6 +18,7 @@ test_1.c
 #include "gpio.h"
 #include "delay.h"
 #include "led.h"
+#include "keys.h"
 
 
 //================================================================================
@@ -59,10 +60,10 @@ int main(void)
 //================================================================================
 #if (T1_2 == 1)
 
-uint8_t get_switchPos(void){ //return state of ports S7:S0 (P1.25:P1.18)
-return (LPC_GPIO1->FIOPIN >> 18);} 
+//uint8_t get_switchPos(void){ //return state of ports S7:S0 (P1.25:P1.18)
+//return (LPC_GPIO1->FIOPIN >> 18);} 
 
-unsigned int Get_TA10Stat(void){return ((LPC_GPIO1->FIOPIN>>26&1));};//return "1" when Button TA10 is pressed
+//unsigned int Get_TA10Stat(void){return ((LPC_GPIO1->FIOPIN>>26&1));};//return "1" when Button TA10 is pressed
 
 int main(void)
 {	
@@ -73,7 +74,7 @@ int main(void)
 	//LPC_GPIO4->FIODIR |=(1UL<<29);
 		
 	//init switches S0..7:
-	LPC_PINCON->PINMODE3|=(0xAAAA<<4);//P1.18...25
+//	LPC_PINCON->PINMODE3|=(0xAAAA<<4);//P1.18...25
 	//init Joystick:
 	LPC_PINCON->PINMODE0 |= (2 << 6); //P0.3
 	LPC_PINCON->PINMODE1 |= (2 << 10);//P0.21
@@ -97,11 +98,25 @@ int main(void)
 
 		GLCD_Init();
 		LED_Init();
+		Switch_Init();
+		Button_Init();
+		GLCD_Simulation();
 
 	while(1)
 	{
-		if ((get_switchPos()>>0)&1) LED_On(0);else LED_Off(2);// as long as switch S0 is on -> LED0 is on
-		if (Get_TA10Stat())         RGB_On(0);else RGB_Off(0);// as long as button TA10 is pressed -> RGB0 (Blue) is on		
+		uint8_t test=Get_SwitchPos();
+		int push= Get_TA12Stat();
+		GLCD_Simulation();
+		if(push){
+			LED_On(5);
+			GLCD_Simulation();
+		}
+		else{
+			LED_Off(5);
+			GLCD_Simulation();
+		}
+//		if ((get_switchPos()>>0)&1) LED_On(0);else LED_Off(0);GLCD_Simulation();// as long as switch S0 is on -> LED0 is on
+//		if (Get_TA10Stat())         RGB_On(0);else RGB_Off(0);GLCD_Simulation();// as long as button TA10 is pressed -> RGB0 (Blue) is on		
 	} 
 }	
 
