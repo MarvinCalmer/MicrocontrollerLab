@@ -82,3 +82,64 @@ extern unsigned int Get_TA11Stat(void){
 extern unsigned int Get_TA12Stat(void){
 	return (LPC_GPIO2->FIOPIN & (1 << 11)) ? 1 : 0;
 }
+
+extern void Joystick_Init(void)
+{
+	//GPIO Power Control
+	LPC_SC->PCONP |=(1<<15);
+	
+	//Pin Function Selection P0.28 P0.3 P0.21 P0.25
+	LPC_PINCON->PINSEL1 &=~(3<<22); // P0.27
+	LPC_PINCON->PINSEL1 &=~(3<<24); // P0.28
+	LPC_PINCON->PINSEL0 &=~(3<<6); // P0.3
+	LPC_PINCON->PINSEL1 &=~(3<<10); // P0.21
+	LPC_PINCON->PINSEL1 &=~(3<<18); // P0.25
+	
+	//Direction Set
+	LPC_GPIO0->FIODIR &=~(1<<27);
+	LPC_GPIO0->FIODIR &=~(1<<28);
+	LPC_GPIO0->FIODIR &=~(1<<3);
+	LPC_GPIO0->FIODIR &=~(1<<21);
+	LPC_GPIO0->FIODIR &=~(1<<25);
+	
+	//PinMode Select
+	LPC_PINCON->PINMODE1 &=~(3<<22); //Functionality 0, 2Bits selected
+	LPC_PINCON->PINMODE1 |=(2<<22); //Functionality Set: 10: No Pullup/Pulldown.
+	LPC_PINCON->PINMODE1 &=~(3<<24); //Functionality 0, 2Bits selected
+	LPC_PINCON->PINMODE1 |=(2<<24); //Functionality Set: 10: No Pullup/Pulldown.
+  LPC_PINCON->PINMODE0 &=~(3<<6); //Functionality 0, 2Bits selected
+	LPC_PINCON->PINMODE0 |=(2<<6); //Functionality Set: 10: No Pullup/Pulldown.
+  LPC_PINCON->PINMODE1 &=~(3<<10); //Functionality 0, 2Bits selected
+	LPC_PINCON->PINMODE1 |=(2<<10); //Functionality Set: 10: No Pullup/Pulldown.
+  LPC_PINCON->PINMODE1 &=~(3<<18); //Functionality 0, 2Bits selected
+	LPC_PINCON->PINMODE1 |=(2<<18); //Functionality Set: 10: No Pullup/Pulldown.
+}
+// Function to get the status of the left direction (P0.27)
+extern unsigned int Get_LeftStat(void) {
+    // Read the state of the P0.27 pin
+    return !(LPC_GPIO0->FIOPIN & (1 << 25)) ? 0 : 1;
+}
+
+// Function to get the status of the right direction (P0.28)
+extern unsigned int Get_RightStat(void) {
+    // Read the state of the P0.28 pin
+    return !(LPC_GPIO0->FIOPIN & (1 << 28)) ? 0 : 1;
+}
+
+// Function to get the status of the up direction (P0.3)
+extern unsigned int Get_UpStat(void) {
+    // Read the state of the P0.3 pin
+    return !(LPC_GPIO0->FIOPIN & (1 << 21)) ? 0 : 1;
+}
+
+// Function to get the status of the down direction (P0.21)
+extern unsigned int Get_DownStat(void) {
+    // Read the state of the P0.21 pin
+    return !(LPC_GPIO0->FIOPIN & (1 << 27)) ? 0 : 1;
+}
+
+// Function to get the status of the center button (P0.25)
+extern unsigned int Get_CenterStat(void) {
+    // Read the state of the P0.25 pin
+    return !(LPC_GPIO0->FIOPIN & (1 << 3)) ? 0 : 1;
+}

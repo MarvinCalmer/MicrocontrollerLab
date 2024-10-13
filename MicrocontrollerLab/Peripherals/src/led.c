@@ -100,23 +100,6 @@ extern void LED_Toggle(uint8_t LedNum){
 	}
 }
 
-
-extern void RGB_On(uint8_t num){
-	switch (num) {
-		case 0: LPC_GPIO0->FIOPIN |=(1UL<<10); break;// RGB Blue is ON (P0.10) 
-		case 1: LPC_GPIO0->FIOPIN |=(1UL<<29); break;
-		case 2: LPC_GPIO4->FIOPIN |=(1UL<<11); break;
-	}
-}
-
-extern void RGB_Off(uint8_t num){
-	switch (num) {
-		case 0: LPC_GPIO0->FIOPIN &=~(1UL<<10); break;// RGB Blue is Off (P0.10) 
-		case 1: LPC_GPIO0->FIOPIN &=~(1UL<<29);
-		case 2: LPC_GPIO4->FIOPIN &=~(1UL<<11);
-	}
-}
-
 extern void LED_Out(unsigned char value) {
 	int i;
 	for (i = 0; i < 8; i++) { 
@@ -127,4 +110,63 @@ extern void LED_Out(unsigned char value) {
 	}
 }
 
+extern void RGB_On(uint8_t num){
+	switch (num) {
+		case 0: LPC_GPIO0->FIOSET =(1<<10); break;// RGB Blue is ON (P0.10) 
+		case 2: LPC_GPIO4->FIOSET =(1<<29); break;
+		case 1: LPC_GPIO0->FIOSET =(1<<11); break;
+	}
+}
+
+extern void RGB_Off(uint8_t num){
+	switch (num) {
+		case 0: LPC_GPIO0->FIOCLR =(1<<10); break;// RGB Blue is Off (P0.10) 
+		case 2: LPC_GPIO4->FIOCLR =(1<<29);	break;
+		case 1: LPC_GPIO1->FIOCLR =(1<<11);	break;
+	}
+}
+
+
+extern void RGB_Init(void){
+	
+	//Power Control GPIO
+	 LPC_SC->PCONP |= (1<<15); 
+	
+	//LEDRGB  Set GPIO Functionality Sets bit 3 
+	LPC_PINCON->PINSEL0 &=~(3<<20);  //RGB Blau P0.10
+	LPC_PINCON->PINSEL0 &=~(3<<22);  //RGB Rot P0.11
+	LPC_PINCON->PINSEL9 &=~(3<<26);  //RGB Gruen P4.29
+
+	LPC_GPIO0->FIODIR |=(1<<10); 
+	LPC_GPIO0->FIODIR |=(1<<11);
+	LPC_GPIO4->FIODIR |=(1<<29);
+	
+	//LEDRGB  Switch OFF
+	LPC_GPIO0->FIOCLR = (1<<10);
+	LPC_GPIO0->FIOCLR = (1<<11);
+	LPC_GPIO4->FIOCLR = (1<<29);
+}
+
+extern void RGB_Out(unsigned char value) {
+    // Handle the Blue component (bit 0)
+    if (value & 0x01) {
+        RGB_On(0);  // Turn on Blue
+    } else {
+        RGB_Off(0); // Turn off Blue
+    }
+
+    // Handle the Red component (bit 1)
+    if (value & 0x02) {
+        RGB_On(2);  // Turn on Red
+    } else {
+        RGB_Off(2); // Turn off Red
+    }
+
+    // Handle the Green component (bit 2)
+    if (value & 0x04) {
+        RGB_On(1);  // Turn on Green
+    } else {
+        RGB_Off(1); // Turn off Green
+    }
+}
 

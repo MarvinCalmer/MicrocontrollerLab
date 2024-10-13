@@ -76,15 +76,15 @@ int main(void)
 	//init switches S0..7:
 //	LPC_PINCON->PINMODE3|=(0xAAAA<<4);//P1.18...25
 	//init Joystick:
-	LPC_PINCON->PINMODE0 |= (2 << 6); //P0.3
-	LPC_PINCON->PINMODE1 |= (2 << 10);//P0.21
-	LPC_PINCON->PINMODE1 |= (2 << 18);//P0.25
-	LPC_PINCON->PINMODE1 |= (2 << 22);//P0.27
-	LPC_PINCON->PINMODE1 |= (2 << 24);//P0.28
-	//init buttons TA10..12
-	LPC_PINCON->PINMODE3 |= (2 << 20);//P1.26
-	LPC_PINCON->PINMODE3 |= (2 << 22);//P1.27
-	LPC_PINCON->PINMODE4 |= (2 << 22);//P2.11
+//	LPC_PINCON->PINMODE0 |= (2 << 6); //P0.3
+//	LPC_PINCON->PINMODE1 |= (2 << 10);//P0.21
+//	LPC_PINCON->PINMODE1 |= (2 << 18);//P0.25
+//	LPC_PINCON->PINMODE1 |= (2 << 22);//P0.27
+//	LPC_PINCON->PINMODE1 |= (2 << 24);//P0.28
+//	//init buttons TA10..12
+//	LPC_PINCON->PINMODE3 |= (2 << 20);//P1.26
+//	LPC_PINCON->PINMODE3 |= (2 << 22);//P1.27
+//	LPC_PINCON->PINMODE4 |= (2 << 22);//P2.11
 
 	//init_matrix
 	LPC_GPIO2->FIODIR |=(1UL<<3);//P0.3
@@ -98,26 +98,50 @@ int main(void)
 
 		GLCD_Init();
 		LED_Init();
+		RGB_Init();
 		Switch_Init();
 		Button_Init();
+		Joystick_Init();
 		GLCD_Simulation();
 
 	while(1)
 	{
-		uint8_t test=Get_SwitchPos();
-		int push= Get_TA12Stat();
+//		uint8_t test=Get_SwitchPos();
+//		int push= Get_TA12Stat();
+//		GLCD_Simulation();
+//		if(test){
+//			RGB_On(1);
+//			GLCD_Simulation();
+//		}
+//		else{
+//			RGB_Off(1);
+//			GLCD_Simulation();
+//		}
+		
+//			for (unsigned char value = 0; value < 8; value++) {
+//					GLCD_Simulation();
+//					RGB_Out(value);    // Output the corresponding RGB combination
+//					delayXms(10);  
+//					GLCD_Simulation();       // Wait for 1 second before the next combination
+//			}
 		GLCD_Simulation();
-		if(push){
-			LED_On(5);
+		if (Get_LeftStat()) {
 			GLCD_Simulation();
-		}
-		else{
-			LED_Off(5);
+            LED_On(1);
 			GLCD_Simulation();
-		}
-//		if ((get_switchPos()>>0)&1) LED_On(0);else LED_Off(0);GLCD_Simulation();// as long as switch S0 is on -> LED0 is on
-//		if (Get_TA10Stat())         RGB_On(0);else RGB_Off(0);GLCD_Simulation();// as long as button TA10 is pressed -> RGB0 (Blue) is on		
-	} 
+        }
+        if (Get_RightStat()) {
+            // Joystick moved right
+        }
+        if (Get_UpStat()) {
+            // Joystick moved up
+        }
+        if (Get_DownStat()) {
+            // Joystick moved down
+        }
+        if (Get_CenterStat()) {
+            // Joystick center button pressed
+		} }
 }	
 
 #endif

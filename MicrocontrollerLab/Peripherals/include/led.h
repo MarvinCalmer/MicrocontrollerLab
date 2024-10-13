@@ -18,6 +18,9 @@ extern void LED_Init(void);
 extern void LED_On(uint8_t LedNum);
 extern void LED_Off(uint8_t LedNum);
 extern void LED_Toggle(uint8_t LedNum);
+extern void LED_Out(unsigned char value);
+
+extern void RGB_Init(void);
 extern void RGB_On(uint8_t num);
 extern void RGB_Off(uint8_t num);
-extern void LED_Out(unsigned char value);
+extern void RGB_Out(unsigned char value);
