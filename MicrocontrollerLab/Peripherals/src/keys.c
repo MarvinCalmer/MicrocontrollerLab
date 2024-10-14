@@ -91,7 +91,7 @@ extern void Joystick_Init(void)
 	//Pin Function Selection P0.28 P0.3 P0.21 P0.25
 	LPC_PINCON->PINSEL1 &=~(3<<22); // P0.27
 	LPC_PINCON->PINSEL1 &=~(3<<24); // P0.28
-	LPC_PINCON->PINSEL0 &=~(3<<6); // P0.3
+	LPC_PINCON->PINSEL0 &=~(3<<6); // P0.3Stat()
 	LPC_PINCON->PINSEL1 &=~(3<<10); // P0.21
 	LPC_PINCON->PINSEL1 &=~(3<<18); // P0.25
 	

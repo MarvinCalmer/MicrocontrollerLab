@@ -27,11 +27,11 @@ description: control of compilation of test_n.c
 //********************************************************************************
 // test 1 
 #define T1_1 0
-#define T1_2 1
+#define T1_2 0
 #define T1_3 0
 #define T1_4 0
 #define T1_5 0
-#define T1_6 0
+#define T1_6 1
 #define T1_7 0
 //********************************************************************************
 

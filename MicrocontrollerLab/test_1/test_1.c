@@ -149,15 +149,25 @@ int main(void)
 
 
 //================================================================================
-//  Main-Function Test T1_3
+//  Main-Function Test T1_3 Task 1.6 
 //================================================================================
 #if (T1_3 == 1)
 
 int main(void)
 {	
-
+	GLCD_Init();
+	Button_Init();
+	Switch_Init();
+	LED_Init();
+	
+	GLCD_Simulation();
 	while(1)
 	{
+		GLCD_Simulation();
+		uint8_t test=Get_SwitchPos();
+		LED_Out(test);
+		GLCD_Simulation();
+		
 		
 	} // end while(1)
 }	// end main()
@@ -167,32 +177,92 @@ int main(void)
 
 
 //================================================================================
-//  Main-Function TestT1_4
+//  Main-Function TestT1_4 Task 1.7
 //================================================================================
 #if (T1_4 == 1)
 
 int main(void)
 {	
+	GLCD_Init();
+	Button_Init();
+	Switch_Init();
+	LED_Init();
+	RGB_Init();
+	
+	GLCD_Simulation();
+	uint8_t state=0 ;
 
 	while(1)
-	{
+	{		
+		GLCD_Simulation();
 		
+		if (Get_TA11Stat()) {
+				state |= (1 << 0);  // Setzt das 3. Bit des state-Bytes (Bit-Position 2)
+		} else {
+				state &= ~(1 << 0); // Löscht das 3. Bit des state-Bytes, wenn TA10 nicht gedrückt
+		}
+		if (Get_TA12Stat()) {
+				state |= (1 <<  1);  // Setzt das 3. Bit des state-Bytes (Bit-Position 2)
+		} else {
+				state &= ~(1 << 1); // Löscht das 3. Bit des state-Bytes, wenn TA10 nicht gedrückt
+		}
+		if (Get_TA10Stat()) {
+				state |= (1 << 2);  // Setzt das 3. Bit des state-Bytes (Bit-Position 2)
+		} else {
+				state &= ~(1 << 2); // Löscht das 3. Bit des state-Bytes, wenn TA10 nicht gedrückt
+		}
+		RGB_Out(state);
+		GLCD_Simulation();
 	} // end while(1)
 }	// end main()
 
 #endif
 
 //================================================================================
-//  Main-Function Test T1_5
+//  Main-Function Test T1_5 Task 1.8
 //================================================================================
 #if (T1_5 == 1)
 
+void Check_Joystick(void) {
+    if (Get_LeftStat()) {
+        LED_On(6);  // Turn on LED6 for left direction
+    } else {
+        LED_Off(6); // Turn off LED6
+    }
+
+    if (Get_RightStat()) {
+        LED_On(2);  // Turn on LED2 for right direction
+    } else {
+        LED_Off(2); // Turn off LED2
+    }
+
+    if (Get_UpStat()) {
+        LED_On(0);  // Turn on LED0 for up direction
+    } else {
+        LED_Off(0); // Turn off LED0
+    }
+
+    if (Get_DownStat()) {
+        LED_On(4);  // Turn on LED4 for down direction
+    } else {
+        LED_Off(4); // Turn off LED4
+    }
+
+}
+
 int main(void)
 {	
-
+	GLCD_Init();
+	Button_Init();
+	Switch_Init();
+	LED_Init();
+	RGB_Init();
+	Joystick_Init();
+	GLCD_Simulation();
 	while(1)
 	{
-		
+		Check_Joystick();
+		GLCD_Simulation();
 	} // end while(1)
 }	// end main()
 
@@ -200,16 +270,83 @@ int main(void)
 
 
 //================================================================================
-//  Main-Function Test T1_6
+//  Main-Function Test T1_6 Task 1.9 & 1.10
 //================================================================================
 #if (T1_6 == 1)
 
+void rolchar(uint8_t* value, uint8_t dir) {
+    if (dir == 1) { // Rotate left
+        // Store the leftmost bit (Bit 7)
+        uint8_t leftmost_bit = (*value >> 7) & 0x01;
+        // Shift left and wrap the leftmost bit to the rightmost position
+        *value = (*value << 1) | leftmost_bit;
+    } else { // Rotate right
+        // Store the rightmost bit (Bit 0)
+        uint8_t rightmost_bit = *value & 0x01;
+        // Shift right and wrap the rightmost bit to the leftmost position
+        *value = (*value >> 1) | (rightmost_bit << 7);
+    }
+}
+
+
 int main(void)
 {	
-
+	GLCD_Init();
+	Button_Init();
+	Switch_Init();
+	LED_Init();
+	RGB_Init();
+	Joystick_Init();
+	GLCD_Simulation();
+	
+	#define minimum 10
+	#define maximum 100
+	#define increment 10
+	
+	uint8_t value = 0x81;
+	uint8_t direction=1;
+	uint16_t delay=20;
+	
 	while(1)
 	{
+		if( Get_CenterStat()){
+			value = Get_SwitchPos();	
+		}
 		
+		
+		if (Get_LeftStat()) {
+			direction=0;
+    } 
+    if (Get_RightStat()) {
+			direction=0;
+    } 
+		if (Get_UpStat() && delay>minimum) {
+			delay=delay-increment;
+    }
+    if (Get_DownStat() && delay<maximum) {
+			delay=delay+increment;
+    }
+		if (delay == minimum) {
+				RGB_Off(0); 
+				RGB_On(1);  
+				RGB_Off(2); 
+		} else if (delay == maximum) {
+				RGB_Off(1); 
+				RGB_On(2);  
+				RGB_Off(0); 
+		} else {
+				RGB_Off(1); 
+				RGB_On(0);  
+				RGB_Off(2); 
+		}
+		
+		rolchar(&value, direction);
+		LED_Out(value);
+		
+		
+		
+		GLCD_Simulation();
+		delayXms(delay);
 	} // end while(1)
 }	// end main()
 

@@ -101,20 +101,60 @@ extern void LED_Toggle(uint8_t LedNum){
 }
 
 extern void LED_Out(unsigned char value) {
-	int i;
-	for (i = 0; i < 8; i++) { 
-		if (value & (1<<i)) {
-			LED_On (i);
-		}
-		else {LED_Off(i);}
-	}
+    if (value & 0x01) {
+        LED_On(0);  
+    } else {
+        LED_Off(0); 
+    }
+    
+    if (value & 0x02) {
+        LED_On(1);  
+    } else {
+        LED_Off(1); 
+    }
+
+    if (value & 0x04) {
+        LED_On(2);  
+    } else {
+        LED_Off(2); 
+    }
+
+    if (value & 0x08) {
+        LED_On(3);  
+    } else {
+        LED_Off(3); 
+    }
+
+    if (value & 0x10) {
+        LED_On(4);  
+    } else {
+        LED_Off(4); 
+    }
+
+    if (value & 0x20) {
+        LED_On(5);  
+    } else {
+        LED_Off(5); 
+    }
+
+    if (value & 0x40) {
+        LED_On(6);  
+    } else {
+        LED_Off(6); 
+    }
+
+    if (value & 0x80) {
+        LED_On(7);  
+    } else {
+        LED_Off(7); 
+    }
 }
 
 extern void RGB_On(uint8_t num){
 	switch (num) {
 		case 0: LPC_GPIO0->FIOSET =(1<<10); break;// RGB Blue is ON (P0.10) 
-		case 2: LPC_GPIO4->FIOSET =(1<<29); break;
-		case 1: LPC_GPIO0->FIOSET =(1<<11); break;
+		case 2: LPC_GPIO4->FIOSET =(1<<29); break;// Green
+		case 1: LPC_GPIO0->FIOSET =(1<<11); break;// Red
 	}
 }
 
@@ -154,19 +194,18 @@ extern void RGB_Out(unsigned char value) {
     } else {
         RGB_Off(0); // Turn off Blue
     }
-
     // Handle the Red component (bit 1)
     if (value & 0x02) {
-        RGB_On(2);  // Turn on Red
+        RGB_On(1);  // Turn on Red
     } else {
-        RGB_Off(2); // Turn off Red
+        RGB_Off(1); // Turn off Red
     }
 
     // Handle the Green component (bit 2)
     if (value & 0x04) {
-        RGB_On(1);  // Turn on Green
+        RGB_On(2);  // Turn on Green
     } else {
-        RGB_Off(1); // Turn off Green
+        RGB_Off(2); // Turn off Green
     }
 }
 
