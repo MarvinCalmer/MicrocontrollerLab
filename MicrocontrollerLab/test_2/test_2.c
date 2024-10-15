@@ -12,6 +12,9 @@ test_2.c
 #include <LPC17xx.h>
 #include "tests.h"
 #include "GLCD.h"
+#include "led.h"
+#include "keys.h"
+#include "lcd.h"
 
 
 //================================================================================
@@ -66,16 +69,39 @@ int main(void)
 
 //
 //================================================================================
-//  Test T2_2
+//  Test T2_2 Task 2.1 & Task 2.2
 //================================================================================
 #if (T2_2 == 1)
 
+
+
 int main(void)
 {	
-
+	Switch_Init();
+	
+	GLCD_Init();
+	GLCD_Clear(White);
+	GLCD_SetBackColor(Blue);
+	GLCD_SetTextColor(Black);
+	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
+	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test2.1 switchpos");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group .... ");
+	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"Binary: ");
+	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"hex: ");
+	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"Decimal: ");
+	
+	GLCD_Simulation();
 	while(1)
 	{
+		uint8_t value = Get_SwitchPos();
 		
+		GLCD_DisplayString(4,10,FONT_16x24,(unsigned char*)lcd_bin(value));
+		GLCD_DisplayString(5,10,FONT_16x24,(unsigned char*)lcd_hex(value));
+		GLCD_DisplayString(6,10,FONT_16x24,(unsigned char*)lcd_dez(value));
+		
+		GLCD_Bargraph(30,160,255,20,value*4);
+		
+		GLCD_Simulation();
 	} // end while(1)
 }	// end main()
 
