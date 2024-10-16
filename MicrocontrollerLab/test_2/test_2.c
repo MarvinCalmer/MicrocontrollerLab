@@ -110,15 +110,33 @@ int main(void)
 
 //
 //================================================================================
-//  Test T2_3
+//  Test T2_3 	Task 2.3
 //================================================================================
 #if (T2_3 == 1)
 
 int main(void)
 {	
-
+	Switch_Init();
+	
+	GLCD_Init();
+	GLCD_Clear(White);
+	GLCD_SetBackColor(Blue);
+	GLCD_SetTextColor(Black);
+	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
+	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test2.2 Switches");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group .... ");
+	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"Value");
+	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"Voltage");
+	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"Temperature");
+	
 	while(1)
 	{
+		unsigned short value = (Get_SwitchPos ()<<4)| 0xF;
+		
+		GLCD_DisplayString(4,15,FONT_16x24,(unsigned char*)lcd_dez(value));
+		GLCD_DisplayString(5,15,FONT_16x24,(unsigned char*) AD_Volt(value));
+		GLCD_DisplayString(6,15,FONT_16x24,(unsigned char*) TempConv(value));
+		GLCD_Simulation();
 		
 	} // end while(1)
 }	// end main()
@@ -135,10 +153,24 @@ int main(void)
 
 int main(void)
 {	
-
+	Switch_Init();
+	Matrix_Init();
+	
+	GLCD_Init();
+	GLCD_Clear(White);
+	GLCD_SetBackColor(Blue);
+	GLCD_SetTextColor(Black);
+	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
+	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test2.3 Matrix");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group .... ");
+	GLCD_DisplayString(8,0,FONT_16x24,(unsigned char*)"Key");
+	GLCD_Simulation();
+	
 	while(1)
 	{
-		
+		unsigned char matrixKey =Get_Mkey();
+		GLCD_DisplayString(8,15,FONT_16x24,&matrixKey);
+		GLCD_Simulation();
 	} // end while(1)
 }	// end main()
 

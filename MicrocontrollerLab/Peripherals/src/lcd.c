@@ -36,3 +36,27 @@ char *lcd_dez(uint16_t value) {
     text_string[5] = 0;  // Null terminator
     return text_string;
 }
+
+char *AD_Volt(unsigned short val){
+	static char text_string[6];
+	unsigned char asc[]= "0123456789";
+	text_string[0]=asc[((int)(val * 33/40950))]; //Amount Volts
+	text_string[1]=',';
+	text_string[2]=asc[((int)(val * 33/4095))%10]; //Amount 10^-1 Volts
+	text_string[3]=asc[((int)(val * 330/4095))%10]; //Amount 10*mVolts
+	text_string[4]='V'; //Unit
+	return (text_string);
+}
+
+char*TempConv(uint16_t value)
+{
+	static char text_string[7];
+	unsigned char asc[]= "0123456789";
+	text_string[0]=asc[((int)(value * 33/40950))]; //Amount Volts
+	text_string[1]=asc[((int)(value * 33/4095))%10]; //Amount Volts
+	text_string[2]=',';
+	text_string[3]=asc[((int)(value * 330/4095))%10]; //Amount 10^-1 Volts
+	text_string[4]=asc[((int)(value * 3300/4095))%10]; //Amount 10*mVolts
+	text_string[5]='C'; //Unit
+	return (text_string);
+}

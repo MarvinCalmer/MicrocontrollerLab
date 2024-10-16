@@ -143,3 +143,50 @@ extern unsigned int Get_CenterStat(void) {
     // Read the state of the P0.25 pin
     return !(LPC_GPIO0->FIOPIN & (1 << 3)) ? 0 : 1;
 }
+
+extern void Matrix_Init(void){
+	//switch on GPIO-Power
+	LPC_SC->PCONP |= (1 << 15);
+	
+	//PinConnect Block GPIO-Function (PINSELx-Reg. (Reset-Value))
+	LPC_PINCON->PINSEL4&=~(3<<6);//P2.3
+	LPC_PINCON->PINSEL4&=~(3<<8);//P2.4
+	LPC_PINCON->PINSEL4&=~(3<<10);//P2.5
+	LPC_PINCON->PINSEL0&=~(3<<8);//P0.4
+	LPC_PINCON->PINSEL0&=~(3<<10);//P0.5
+	LPC_PINCON->PINSEL7&=~(3<<20);//P3.26
+	
+	//Selection neither PullUp nor pull down */
+	LPC_PINCON->PINMODE4 &= ~( 3 << 6);LPC_PINCON->PINMODE4 |= ( 2 << 6); //P2.3
+	LPC_PINCON->PINMODE4 &= ~( 3 << 8);LPC_PINCON->PINMODE4 |= ( 2 << 8); //P2.4
+	LPC_PINCON->PINMODE4 &= ~( 3 << 10);LPC_PINCON->PINMODE4 |= ( 2 << 10); //P2.5
+	LPC_PINCON->PINMODE0 &= ~( 3 << 8);LPC_PINCON->PINMODE0 |= ( 2 << 8); //P0.4
+	LPC_PINCON->PINMODE0 &= ~( 3 << 10);LPC_PINCON->PINMODE0 |= ( 2 << 10); //P0.5
+	LPC_PINCON->PINMODE7 &= ~( 3 << 20);LPC_PINCON->PINMODE7 |= ( 2 << 20); //P3.26
+	
+	LPC_GPIO2->FIODIR &= ~(1<<3);
+	LPC_GPIO2->FIODIR &= ~(1<<4);
+	LPC_GPIO2->FIODIR &= ~(1<<5);
+	LPC_GPIO0->FIODIR &= ~(1<<4);
+	LPC_GPIO0->FIODIR &= ~(1<<5);
+	LPC_GPIO3->FIODIR &= ~(1<<26);
+}
+
+extern unsigned char Get_Mkey(void){
+	
+	 for (int row = 0; row < 3; row++) {
+        // Set all rows to 0
+        LPC_GPIO2->FIOCLR = (1 << 3); // Clear P2.3 (Row 1)
+        LPC_GPIO2->FIOCLR = (1 << 4); // Clear P2.4 (Row 2)
+        LPC_GPIO2->FIOCLR = (1 << 5); // Clear P2.5 (Row 3)
+
+		unsigned char key = 
+				(LPC_GPIO0->FIOPIN & (1 << 4)) ? (row == 0 ? '1' : (row == 1 ? '4' : '7')) :
+				(LPC_GPIO0->FIOPIN & (1 << 5)) ? (row == 0 ? '2' : (row == 1 ? '5' : '8')) :
+				(LPC_GPIO3->FIOPIN & (1 << 26)) ? (row == 0 ? '3' : (row == 1 ? '6' : '9')) : 0x20;
+				
+	
+		return key;
+		}
+	 return 0x20;
+}
