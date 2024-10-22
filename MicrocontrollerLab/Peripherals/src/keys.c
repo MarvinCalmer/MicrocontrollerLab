@@ -1,4 +1,5 @@
 #include "keys.h"
+#include "prio.h"
 #include <LPC17xx.h>
 
 extern void Switch_Init(){
@@ -38,7 +39,7 @@ extern void Switch_Init(){
 extern uint8_t Get_SwitchPos(void){
 	//return state of ports S7:S0 (P1.25:P1.18) : The result is a single byte, where each bit represents the state of one switch
 	// P1.18 LSB ... P1.25 MSB
-	uint8_t pos;
+	uint8_t pos=0;
 
 	pos |= (LPC_GPIO1->FIOPIN & (1 << 18)) ? (1 << 0) : 0;  // S0 -> P1.18
 	pos |= (LPC_GPIO1->FIOPIN & (1 << 19)) ? (1 << 1) : 0;  // S1 -> P1.19
@@ -179,14 +180,151 @@ extern unsigned char Get_Mkey(void){
         LPC_GPIO2->FIOCLR = (1 << 3); // Clear P2.3 (Row 1)
         LPC_GPIO2->FIOCLR = (1 << 4); // Clear P2.4 (Row 2)
         LPC_GPIO2->FIOCLR = (1 << 5); // Clear P2.5 (Row 3)
+		 
+				//Set current Row
+				LPC_GPIO2->FIOSET = (1 << (3+row)); // Set current Row
 
-		unsigned char key = 
-				(LPC_GPIO0->FIOPIN & (1 << 4)) ? (row == 0 ? '1' : (row == 1 ? '4' : '7')) :
-				(LPC_GPIO0->FIOPIN & (1 << 5)) ? (row == 0 ? '2' : (row == 1 ? '5' : '8')) :
-				(LPC_GPIO3->FIOPIN & (1 << 26)) ? (row == 0 ? '3' : (row == 1 ? '6' : '9')) : 0x20;
+				// Test:	maybe breaks after first check?
+//				unsigned char key = 
+//						(LPC_GPIO0->FIOPIN & (1 << 4)) ? (row == 0 ? '1' : (row == 1 ? '4' : '7')) :
+//						(LPC_GPIO0->FIOPIN & (1 << 5)) ? (row == 0 ? '2' : (row == 1 ? '5' : '8')) :
+//						(LPC_GPIO3->FIOPIN & (1 << 26)) ? (row == 0 ? '3' : (row == 1 ? '6' : '9')) : 0x20;
+//				
+//	
+//		return key;
+		 
+		  if ((LPC_GPIO0->FIOPIN & (1 << 4))) {  // Column 1 (P0.4)
+            if (row == 0) return '1';  // Row 1, Column 1
+            if (row == 1) return '4';  // Row 2, Column 1
+            if (row == 2) return '7';  // Row 3, Column 1
+        }
+        if ((LPC_GPIO0->FIOPIN & (1 << 5))) {  // Column 2 (P0.5)
+            if (row == 0) return '2';  // Row 1, Column 2
+            if (row == 1) return '5';  // Row 2, Column 2
+            if (row == 2) return '8';  // Row 3, Column 2
+        }
+        if ((LPC_GPIO3->FIOPIN & (1 << 26))) {  // Column 3 (P3.26)
+            if (row == 0) return '3';  // Row 1, Column 3
+            if (row == 1) return '6';  // Row 2, Column 3
+            if (row == 2) return '9';  // Row 3, Column 3
+        }
 				
-	
-		return key;
+				// ASCII
+//				if ((LPC_GPIO0->FIOPIN & (1 << 4))) {  // Column 1 (P0.4)
+//            if (row == 0) return 0x31;  // Row 1, Column 1
+//            if (row == 1) return 0x34;  // Row 2, Column 1
+//            if (row == 2) return 0x37;  // Row 3, Column 1
+//        }
+//        if ((LPC_GPIO0->FIOPIN & (1 << 5))) {  // Column 2 (P0.5)
+//            if (row == 0) return 0x32;  // Row 1, Column 2
+//            if (row == 1) return 0x35;  // Row 2, Column 2
+//            if (row == 2) return 0x38;  // Row 3, Column 2
+//        }
+//        if ((LPC_GPIO3->FIOPIN & (1 << 26))) {  // Column 3 (P3.26)
+//            if (row == 0) return 0x33;  // Row 1, Column 3
+//            if (row == 1) return 0x36;  // Row 2, Column 3
+//            if (row == 2) return 0x39;  // Row 3, Column 3
+//        }
+				
 		}
+	 // Resets all Rows 
+		LPC_GPIO2->FIOCLR = (1 << 3); // Clear P2.3 (Row 1)
+		LPC_GPIO2->FIOCLR = (1 << 4); // Clear P2.4 (Row 2)
+		LPC_GPIO2->FIOCLR = (1 << 5); // Clear P2.5 (Row 3)
+		
 	 return 0x20;
+}
+
+extern void JoyStick_IRQ_Init(void){
+	//GPIO Power Control
+	LPC_SC->PCONP |=(1<<15);
+	//Pin Function Selection P0.28 P0.3 P0.21 P0.25
+	LPC_PINCON->PINSEL1 &=~(3<<22); // P0.27
+	LPC_PINCON->PINSEL1 &=~(3<<24); // P0.28
+	LPC_PINCON->PINSEL0 &=~(3<<6); // P0.3
+	LPC_PINCON->PINSEL1 &=~(3<<10); // P0.21
+	LPC_PINCON->PINSEL1 &=~(3<<18); // P0.25
+	//Direction Set
+	LPC_GPIO0->FIODIR &=~(1<<27);
+	LPC_GPIO0->FIODIR &=~(1<<28);
+	LPC_GPIO0->FIODIR &=~(1<<3);
+	LPC_GPIO0->FIODIR &=~(1<<21);
+	LPC_GPIO0->FIODIR &=~(1<<25);
+	//PinMode Select
+	LPC_PINCON->PINMODE1 &=~(3<<22); //Functionality 0, 2Bits selected
+	LPC_PINCON->PINMODE1 |=(2<<22); //Functionality Set: 10: No Pullup/Pulldown.
+	LPC_PINCON->PINMODE1 &=~(3<<24); //Functionality 0, 2Bits selected
+	LPC_PINCON->PINMODE1 |=(2<<24); //Functionality Set: 10: No Pullup/Pulldown.
+  LPC_PINCON->PINMODE0 &=~(3<<6); //Functionality 0, 2Bits selected
+	LPC_PINCON->PINMODE0 |=(2<<6); //Functionality Set: 10: No Pullup/Pulldown.
+  LPC_PINCON->PINMODE1 &=~(3<<10); //Functionality 0, 2Bits selected
+	LPC_PINCON->PINMODE1 |=(2<<10); //Functionality Set: 10: No Pullup/Pulldown.
+  LPC_PINCON->PINMODE1 &=~(3<<18); //Functionality 0, 2Bits selected
+	LPC_PINCON->PINMODE1 |=(2<<18); //Functionality Set: 10: No Pullup/Pulldown.
+	//Enable GPIO Rising Edge interrupt for Pins
+	LPC_GPIOINT->IO0IntEnR |= (1<<3);
+	LPC_GPIOINT->IO0IntEnR |= (1<<28);
+	LPC_GPIOINT->IO0IntEnR |= (1<<27);
+	LPC_GPIOINT->IO0IntEnR |= (1<<25);
+	LPC_GPIOINT->IO0IntEnR |= (1<<21);
+	//clear peripheral pending bit
+	LPC_GPIOINT->IO0IntClr |= (1<<3);
+	LPC_GPIOINT->IO0IntClr |= (1<<28);
+	LPC_GPIOINT->IO0IntClr |= (1<<27);
+	LPC_GPIOINT->IO0IntClr |= (1<<25);
+	LPC_GPIOINT->IO0IntClr |= (1<<21);
+	// delete interrupt requests
+	LPC_SC->EXTINT |=(1<<3);   
+	//NVIC implementation for clearing and prio
+	NVIC_ClearPendingIRQ(EINT3_IRQn);
+	NVIC_SetPriority(EINT3_IRQn, PRIO_JOYSTICK_IRQN);
+	NVIC_EnableIRQ(EINT3_IRQn);
+}
+
+extern void Encoder_Init (void){
+	//GPIO Power Control
+	LPC_SC->PCONP |=(1<<15);
+	
+	// EINT3
+	
+//	//Pin Function Selection 
+//	LPC_PINCON->PINSEL1 &=~(3<<14); // P0.23
+//	LPC_PINCON->PINSEL1 &=~(3<<16); // P0.24
+	//Direction Set
+	LPC_GPIO0->FIODIR &=~(1<<23);
+	LPC_GPIO0->FIODIR &=~(1<<24);
+	//PinMode Select
+	LPC_PINCON->PINMODE1 &=~(3<<14); //Functionality 0, 2Bits selected
+	LPC_PINCON->PINMODE1 |=(2<<14); //Functionality Set: 10: No Pullup/Pulldown.
+	LPC_PINCON->PINMODE1 &=~(3<<16); //Functionality 0, 2Bits selected
+	LPC_PINCON->PINMODE1 |=(2<<16); //Functionality Set: 10: No Pullup/Pulldown.
+	//Enable GPIO Rising Edge interrupt for Pins
+	LPC_GPIOINT->IO0IntEnR |= (1<<23);
+	//Reset Requests
+	LPC_SC->EXTINT=(1<<3);
+	//NVIC P0.23
+	NVIC_ClearPendingIRQ(EINT3_IRQn);
+	NVIC_SetPriority(EINT3_IRQn,PRIO_EINT3_IRQN);
+	NVIC_EnableIRQ(EINT3_IRQn);
+	
+	// EINT0
+	
+	//Pin Function Selection 
+	//set 20 and 21 to 01
+	LPC_PINCON->PINSEL4 |= (1<<20); 
+	LPC_PINCON->PINSEL4 &= ~(1<<21); 
+	//PinMode Select
+	LPC_PINCON->PINMODE4 &=~(3<<20); //Functionality 0, 2Bits selected
+	LPC_PINCON->PINMODE4 |=(2<<20); //Functionality Set: 10: No Pullup/Pulldown.
+	// Set edge sensitivity in the EXTMODE register 
+	LPC_SC->EXTMODE |= (1<<0);
+	//Set rising edge in the EXTPOLAR register.
+	LPC_SC->EXTPOLAR |=(1<<0);// 1:rising edge 0:falling edge
+	//Clear the interrupt pending bit in the EXTTINT Register and in NVIC
+	LPC_SC->EXTINT |=(1<<0);   // delete interrupt requests
+	NVIC_ClearPendingIRQ(EINT0_IRQn);
+	//Set Prio
+	NVIC_SetPriority (EINT0_IRQn,PRIO_EINT0_IRQN);
+	//Enable EINT0 NVIC interrupt
+	NVIC_EnableIRQ(EINT0_IRQn);
 }

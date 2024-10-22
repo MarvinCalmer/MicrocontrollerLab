@@ -1,0 +1,7 @@
+#define PRIO_EINT1_IRQN 2
+#define PRIO_JOYSTICK_IRQN 1
+
+#define PRIO_EINT0_IRQN 3
+#define PRIO_EINT3_IRQN 4
+
+#define PRIO_ADC_IRQN 1

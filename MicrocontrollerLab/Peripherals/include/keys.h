@@ -17,3 +17,6 @@ extern unsigned int Get_CenterStat(void);
 
 extern void Matrix_Init(void);
 extern unsigned char Get_Mkey(void);
+
+extern void JoyStick_IRQ_Init(void);
+extern void Encoder_Init (void);

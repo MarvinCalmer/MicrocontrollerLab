@@ -40,15 +40,15 @@ extern void LED_Init(void)
 	LPC_GPIO2->FIODIR |= (1<<12);
 	LPC_GPIO2->FIODIR |= (1<<13);
 	
-	//Set Input Mode to "PullUP" for all LEDs
-	LPC_PINCON->PINMODE0 &=~(3<<0);  //LED0 P0.0
-	LPC_PINCON->PINMODE0 &=~(3<<4);  //LED1 P0.2
-	LPC_PINCON->PINMODE1 &=~(3<<12);  //LED2 P0.22
-	LPC_PINCON->PINMODE4 &=~(3<<12);  //LED3 P2.6
-	LPC_PINCON->PINMODE4 &=~(3<<14);  //LED4 P2.7
-	LPC_PINCON->PINMODE4 &=~(3<<16);  //LED5 P2.8
-	LPC_PINCON->PINMODE4 &=~(3<<24);  //LED6 P2.12
-	LPC_PINCON->PINMODE4 &=~(3<<26);  //LED7 P2.13
+//	//Set Input Mode to "PullUP" for all LEDs
+//	LPC_PINCON->PINMODE0 &=~(3<<0);  //LED0 P0.0
+//	LPC_PINCON->PINMODE0 &=~(3<<4);  //LED1 P0.2
+//	LPC_PINCON->PINMODE1 &=~(3<<12);  //LED2 P0.22
+//	LPC_PINCON->PINMODE4 &=~(3<<12);  //LED3 P2.6
+//	LPC_PINCON->PINMODE4 &=~(3<<14);  //LED4 P2.7
+//	LPC_PINCON->PINMODE4 &=~(3<<16);  //LED5 P2.8
+//	LPC_PINCON->PINMODE4 &=~(3<<24);  //LED6 P2.12
+//	LPC_PINCON->PINMODE4 &=~(3<<26);  //LED7 P2.13
 
 	//LED0...LED7...LEDRGB  Switch OFF
 	LPC_GPIO0->FIOCLR = (1<<0);
@@ -92,11 +92,11 @@ extern void LED_Toggle(uint8_t LedNum){
 		case 0: LPC_GPIO0->FIOPIN ^= (1 << 0);break;
 		case 1: LPC_GPIO0->FIOPIN ^= (1 << 2);break;
 		case 2: LPC_GPIO0->FIOPIN ^= (1 << 22);break;
-		case 3: LPC_GPIO0->FIOPIN ^= (1 << 6);break;
-		case 4: LPC_GPIO0->FIOPIN ^= (1 << 7);break;
-		case 5: LPC_GPIO0->FIOPIN ^= (1 << 8);break;
-		case 6: LPC_GPIO0->FIOPIN ^= (1 << 12);break;
-		case 7: LPC_GPIO0->FIOPIN ^= (1 << 13);break;
+		case 3: LPC_GPIO2->FIOPIN ^= (1 << 6);break;
+		case 4: LPC_GPIO2->FIOPIN ^= (1 << 7);break;
+		case 5: LPC_GPIO2->FIOPIN ^= (1 << 8);break;
+		case 6: LPC_GPIO2->FIOPIN ^= (1 << 12);break;
+		case 7: LPC_GPIO2->FIOPIN ^= (1 << 13);break;
 	}
 }
 
@@ -162,7 +162,7 @@ extern void RGB_Off(uint8_t num){
 	switch (num) {
 		case 0: LPC_GPIO0->FIOCLR =(1<<10); break;// RGB Blue is Off (P0.10) 
 		case 2: LPC_GPIO4->FIOCLR =(1<<29);	break;
-		case 1: LPC_GPIO1->FIOCLR =(1<<11);	break;
+		case 1: LPC_GPIO0->FIOCLR =(1<<11);	break;
 	}
 }
 

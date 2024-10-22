@@ -579,7 +579,7 @@ Removing Unused input sections from the image.
     Removing gpio.o(.ARM.exidx.text.GPIOToggle), (8 bytes).
     Removing keys.o(.text), (0 bytes).
     Removing keys.o(.ARM.exidx.text.Switch_Init), (8 bytes).
-    Removing keys.o(.text.Get_SwitchPos), (194 bytes).
+    Removing keys.o(.text.Get_SwitchPos), (200 bytes).
     Removing keys.o(.ARM.exidx.text.Get_SwitchPos), (8 bytes).
     Removing keys.o(.text.Button_Init), (162 bytes).
     Removing keys.o(.ARM.exidx.text.Button_Init), (8 bytes).
@@ -604,7 +604,7 @@ Removing Unused input sections from the image.
     Removing keys.o(.ARM.exidx.text.Matrix_Init), (8 bytes).
     Removing keys.o(.ARM.exidx.text.Get_Mkey), (8 bytes).
     Removing led.o(.text), (0 bytes).
-    Removing led.o(.text.LED_Init), (330 bytes).
+    Removing led.o(.text.LED_Init), (242 bytes).
     Removing led.o(.ARM.exidx.text.LED_Init), (8 bytes).
     Removing led.o(.text.LED_On), (180 bytes).
     Removing led.o(.ARM.exidx.text.LED_On), (8 bytes).
@@ -645,7 +645,7 @@ Removing Unused input sections from the image.
     Removing system_lpc17xx.o(.ARM.exidx.text.SystemInit), (8 bytes).
     Removing system_lpc17xx.o(.data.SystemCoreClock), (4 bytes).
 
-120 unused section(s) (total 12136 bytes) removed from the image.
+120 unused section(s) (total 12054 bytes) removed from the image.
 
 ==============================================================================
 
@@ -948,133 +948,133 @@ Image Symbol Table
     [Anonymous Symbol]                       0x00001f1c   Section        0  glcd_simulation.o(.text.GLCD_S_SetTextColor)
     [Anonymous Symbol]                       0x000020cc   Section        0  glcd_simulation.o(.text.GLCD_S_Simulation)
     [Anonymous Symbol]                       0x00003afc   Section        0  keys.o(.text.Get_Mkey)
-    [Anonymous Symbol]                       0x00003be8   Section        0  keys.o(.text.Matrix_Init)
-    [Anonymous Symbol]                       0x00003d04   Section        0  glcd_simulation.o(.text.SetCursorPosition)
-    [Anonymous Symbol]                       0x00003d24   Section        0  keys.o(.text.Switch_Init)
-    [Anonymous Symbol]                       0x00003e50   Section        0  system_lpc17xx.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x00003fd4   Section        0  glcd_simulation.o(.text.fputc)
-    [Anonymous Symbol]                       0x0000400c   Section        0  test_2.o(.text.main)
-    CL$$btod_d2e                             0x000040a2   Section       62  btod.o(CL$$btod_d2e)
-    CL$$btod_d2e_denorm_low                  0x000040e0   Section       70  btod.o(CL$$btod_d2e_denorm_low)
-    CL$$btod_d2e_norm_op1                    0x00004126   Section       96  btod.o(CL$$btod_d2e_norm_op1)
-    CL$$btod_div_common                      0x00004188   Section      824  btod.o(CL$$btod_div_common)
-    CL$$btod_e2e                             0x000044c0   Section      220  btod.o(CL$$btod_e2e)
-    CL$$btod_ediv                            0x0000459c   Section       42  btod.o(CL$$btod_ediv)
-    CL$$btod_emul                            0x000045c6   Section       42  btod.o(CL$$btod_emul)
-    CL$$btod_mult_common                     0x000045f0   Section      580  btod.o(CL$$btod_mult_common)
-    i.__ARM_fpclassify                       0x00004834   Section        0  fpclassify.o(i.__ARM_fpclassify)
-    i._is_digit                              0x0000485c   Section        0  __printf_wp.o(i._is_digit)
-    locale$$code                             0x0000486c   Section       44  lc_numeric_c.o(locale$$code)
-    locale$$code                             0x00004898   Section       44  lc_ctype_c.o(locale$$code)
-    x$fpl$printf1                            0x000048c4   Section        4  printf1.o(x$fpl$printf1)
-    x$fpl$printf2                            0x000048c8   Section        4  printf2.o(x$fpl$printf2)
-    initial_mbstate                          0x000048cc   Data           8  _printf_wctomb.o(.constdata)
-    .constdata                               0x000048cc   Section        8  _printf_wctomb.o(.constdata)
-    x$fpl$usenofp                            0x000048cc   Section        0  usenofp.o(x$fpl$usenofp)
-    uc_hextab                                0x000048d4   Data          20  _printf_hex_int_ll_ptr.o(.constdata)
-    .constdata                               0x000048d4   Section       40  _printf_hex_int_ll_ptr.o(.constdata)
-    lc_hextab                                0x000048e8   Data          20  _printf_hex_int_ll_ptr.o(.constdata)
-    maptable                                 0x000048fc   Data          17  __printf_flags_ss_wp.o(.constdata)
-    .constdata                               0x000048fc   Section       17  __printf_flags_ss_wp.o(.constdata)
-    lc_hextab                                0x0000490d   Data          19  _printf_fp_hex.o(.constdata)
-    .constdata                               0x0000490d   Section       38  _printf_fp_hex.o(.constdata)
-    uc_hextab                                0x00004920   Data          19  _printf_fp_hex.o(.constdata)
-    tenpwrs_x                                0x00004934   Data          60  bigflt0.o(.constdata)
-    .constdata                               0x00004934   Section      148  bigflt0.o(.constdata)
-    tenpwrs_i                                0x00004970   Data          64  bigflt0.o(.constdata)
-    .L.str                                   0x000049c8   Data          22  test_2.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x000049c8   Section        0  test_2.o(.rodata.str1.1)
-    .L.str.2                                 0x000049de   Data          12  test_2.o(.rodata.str1.1)
-    .L.str.1                                 0x000049ea   Data          15  test_2.o(.rodata.str1.1)
-    .L.str.3                                 0x000049f9   Data           4  test_2.o(.rodata.str1.1)
-    .L.str.9                                 0x000049fd   Data           4  glcd_simulation.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x000049fd   Section        0  glcd_simulation.o(.rodata.str1.1)
-    .L.str.35                                0x00004a01   Data           8  glcd_simulation.o(.rodata.str1.1)
-    .L.str.34                                0x00004a09   Data           8  glcd_simulation.o(.rodata.str1.1)
-    .L.str.33                                0x00004a11   Data           8  glcd_simulation.o(.rodata.str1.1)
-    .L.str.2                                 0x00004a13   Data           5  glcd_simulation.o(.rodata.str1.1)
-    .L.str.32                                0x00004a19   Data           8  glcd_simulation.o(.rodata.str1.1)
-    .L.str.31                                0x00004a21   Data           8  glcd_simulation.o(.rodata.str1.1)
-    .L.str.30                                0x00004a29   Data           8  glcd_simulation.o(.rodata.str1.1)
-    .L.str.29                                0x00004a31   Data           8  glcd_simulation.o(.rodata.str1.1)
-    .L.str.28                                0x00004a39   Data           8  glcd_simulation.o(.rodata.str1.1)
-    .L.str.64                                0x00004a3c   Data           5  glcd_simulation.o(.rodata.str1.1)
-    .L.str.11                                0x00004a3e   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.74                                0x00004a41   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.75                                0x00004a44   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.25                                0x00004a47   Data          16  glcd_simulation.o(.rodata.str1.1)
-    .L.str.13                                0x00004a57   Data           6  glcd_simulation.o(.rodata.str1.1)
-    .L.str.27                                0x00004a5d   Data           8  glcd_simulation.o(.rodata.str1.1)
-    .L.str.17                                0x00004a65   Data           6  glcd_simulation.o(.rodata.str1.1)
-    .L.str.65                                0x00004a68   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.19                                0x00004a6b   Data           6  glcd_simulation.o(.rodata.str1.1)
-    .L.str.66                                0x00004a6e   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.41                                0x00004a71   Data           7  glcd_simulation.o(.rodata.str1.1)
-    .L.str.18                                0x00004a78   Data           6  glcd_simulation.o(.rodata.str1.1)
-    .L.str.67                                0x00004a7b   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.16                                0x00004a7e   Data           6  glcd_simulation.o(.rodata.str1.1)
-    .L.str.68                                0x00004a81   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.21                                0x00004a84   Data           6  glcd_simulation.o(.rodata.str1.1)
-    .L.str.69                                0x00004a87   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.42                                0x00004a8a   Data           7  glcd_simulation.o(.rodata.str1.1)
-    .L.str.22                                0x00004a91   Data           6  glcd_simulation.o(.rodata.str1.1)
-    .L.str.70                                0x00004a94   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.20                                0x00004a97   Data           6  glcd_simulation.o(.rodata.str1.1)
-    .L.str.71                                0x00004a9a   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.72                                0x00004a9d   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.43                                0x00004aa0   Data           7  glcd_simulation.o(.rodata.str1.1)
-    .L.str.73                                0x00004aa4   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.63                                0x00004aa7   Data           5  glcd_simulation.o(.rodata.str1.1)
-    .L.str.23                                0x00004aac   Data           5  glcd_simulation.o(.rodata.str1.1)
-    .L.str.3                                 0x00004ab1   Data           5  glcd_simulation.o(.rodata.str1.1)
-    .L.str.39                                0x00004ab6   Data           6  glcd_simulation.o(.rodata.str1.1)
-    .L.str.26                                0x00004abc   Data          14  glcd_simulation.o(.rodata.str1.1)
-    .L.str.12                                0x00004aca   Data           5  glcd_simulation.o(.rodata.str1.1)
-    .L.str.14                                0x00004acc   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.37                                0x00004acf   Data           4  glcd_simulation.o(.rodata.str1.1)
-    .L.str.38                                0x00004ad3   Data          18  glcd_simulation.o(.rodata.str1.1)
-    .L.str.62                                0x00004ae5   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.24                                0x00004ae8   Data          27  glcd_simulation.o(.rodata.str1.1)
-    .L.str.36                                0x00004b03   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.44                                0x00004b0d   Data           9  glcd_simulation.o(.rodata.str1.1)
-    .L.str.4                                 0x00004b16   Data          17  glcd_simulation.o(.rodata.str1.1)
-    .L.str.5                                 0x00004b27   Data          11  glcd_simulation.o(.rodata.str1.1)
-    .L.str.61                                0x00004b32   Data           4  glcd_simulation.o(.rodata.str1.1)
-    .L.str.40                                0x00004b36   Data          12  glcd_simulation.o(.rodata.str1.1)
-    .L.str.8                                 0x00004b42   Data           3  glcd_simulation.o(.rodata.str1.1)
-    .L.str.10                                0x00004b43   Data           2  glcd_simulation.o(.rodata.str1.1)
-    .L.str.57                                0x00004b45   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.54                                0x00004b4f   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.56                                0x00004b59   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.46                                0x00004b63   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.60                                0x00004b6d   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.51                                0x00004b77   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.45                                0x00004b81   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.55                                0x00004b8b   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.50                                0x00004b95   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.49                                0x00004b9f   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.59                                0x00004ba9   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.58                                0x00004bb3   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.48                                0x00004bbd   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.53                                0x00004bc7   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.15                                0x00004bcf   Data           2  glcd_simulation.o(.rodata.str1.1)
-    .L.str.7                                 0x00004bd1   Data           2  glcd_simulation.o(.rodata.str1.1)
-    .L.str                                   0x00004bd3   Data          12  glcd_simulation.o(.rodata.str1.1)
-    .L.str.1                                 0x00004be4   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.47                                0x00004bee   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.52                                0x00004bf8   Data          10  glcd_simulation.o(.rodata.str1.1)
-    .L.str.6                                 0x00004c02   Data           2  glcd_simulation.o(.rodata.str1.1)
-    locale$$data                             0x00004c24   Section       28  lc_numeric_c.o(locale$$data)
-    __lcnum_c_name                           0x00004c28   Data           2  lc_numeric_c.o(locale$$data)
-    __lcnum_c_start                          0x00004c30   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_point                          0x00004c3c   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_thousands                      0x00004c3e   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_grouping                       0x00004c3f   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_end                            0x00004c40   Data           0  lc_numeric_c.o(locale$$data)
-    locale$$data                             0x00004c40   Section      272  lc_ctype_c.o(locale$$data)
-    __lcctype_c_name                         0x00004c44   Data           2  lc_ctype_c.o(locale$$data)
-    __lcctype_c_start                        0x00004c4c   Data           0  lc_ctype_c.o(locale$$data)
-    __lcctype_c_end                          0x00004d50   Data           0  lc_ctype_c.o(locale$$data)
+    [Anonymous Symbol]                       0x00003c24   Section        0  keys.o(.text.Matrix_Init)
+    [Anonymous Symbol]                       0x00003d40   Section        0  glcd_simulation.o(.text.SetCursorPosition)
+    [Anonymous Symbol]                       0x00003d60   Section        0  keys.o(.text.Switch_Init)
+    [Anonymous Symbol]                       0x00003e8c   Section        0  system_lpc17xx.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x00004010   Section        0  glcd_simulation.o(.text.fputc)
+    [Anonymous Symbol]                       0x00004048   Section        0  test_2.o(.text.main)
+    CL$$btod_d2e                             0x000040de   Section       62  btod.o(CL$$btod_d2e)
+    CL$$btod_d2e_denorm_low                  0x0000411c   Section       70  btod.o(CL$$btod_d2e_denorm_low)
+    CL$$btod_d2e_norm_op1                    0x00004162   Section       96  btod.o(CL$$btod_d2e_norm_op1)
+    CL$$btod_div_common                      0x000041c4   Section      824  btod.o(CL$$btod_div_common)
+    CL$$btod_e2e                             0x000044fc   Section      220  btod.o(CL$$btod_e2e)
+    CL$$btod_ediv                            0x000045d8   Section       42  btod.o(CL$$btod_ediv)
+    CL$$btod_emul                            0x00004602   Section       42  btod.o(CL$$btod_emul)
+    CL$$btod_mult_common                     0x0000462c   Section      580  btod.o(CL$$btod_mult_common)
+    i.__ARM_fpclassify                       0x00004870   Section        0  fpclassify.o(i.__ARM_fpclassify)
+    i._is_digit                              0x00004898   Section        0  __printf_wp.o(i._is_digit)
+    locale$$code                             0x000048a8   Section       44  lc_numeric_c.o(locale$$code)
+    locale$$code                             0x000048d4   Section       44  lc_ctype_c.o(locale$$code)
+    x$fpl$printf1                            0x00004900   Section        4  printf1.o(x$fpl$printf1)
+    x$fpl$printf2                            0x00004904   Section        4  printf2.o(x$fpl$printf2)
+    initial_mbstate                          0x00004908   Data           8  _printf_wctomb.o(.constdata)
+    .constdata                               0x00004908   Section        8  _printf_wctomb.o(.constdata)
+    x$fpl$usenofp                            0x00004908   Section        0  usenofp.o(x$fpl$usenofp)
+    uc_hextab                                0x00004910   Data          20  _printf_hex_int_ll_ptr.o(.constdata)
+    .constdata                               0x00004910   Section       40  _printf_hex_int_ll_ptr.o(.constdata)
+    lc_hextab                                0x00004924   Data          20  _printf_hex_int_ll_ptr.o(.constdata)
+    maptable                                 0x00004938   Data          17  __printf_flags_ss_wp.o(.constdata)
+    .constdata                               0x00004938   Section       17  __printf_flags_ss_wp.o(.constdata)
+    lc_hextab                                0x00004949   Data          19  _printf_fp_hex.o(.constdata)
+    .constdata                               0x00004949   Section       38  _printf_fp_hex.o(.constdata)
+    uc_hextab                                0x0000495c   Data          19  _printf_fp_hex.o(.constdata)
+    tenpwrs_x                                0x00004970   Data          60  bigflt0.o(.constdata)
+    .constdata                               0x00004970   Section      148  bigflt0.o(.constdata)
+    tenpwrs_i                                0x000049ac   Data          64  bigflt0.o(.constdata)
+    .L.str                                   0x00004a04   Data          22  test_2.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x00004a04   Section        0  test_2.o(.rodata.str1.1)
+    .L.str.2                                 0x00004a1a   Data          12  test_2.o(.rodata.str1.1)
+    .L.str.1                                 0x00004a26   Data          15  test_2.o(.rodata.str1.1)
+    .L.str.3                                 0x00004a35   Data           4  test_2.o(.rodata.str1.1)
+    .L.str.9                                 0x00004a39   Data           4  glcd_simulation.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x00004a39   Section        0  glcd_simulation.o(.rodata.str1.1)
+    .L.str.35                                0x00004a3d   Data           8  glcd_simulation.o(.rodata.str1.1)
+    .L.str.34                                0x00004a45   Data           8  glcd_simulation.o(.rodata.str1.1)
+    .L.str.33                                0x00004a4d   Data           8  glcd_simulation.o(.rodata.str1.1)
+    .L.str.2                                 0x00004a4f   Data           5  glcd_simulation.o(.rodata.str1.1)
+    .L.str.32                                0x00004a55   Data           8  glcd_simulation.o(.rodata.str1.1)
+    .L.str.31                                0x00004a5d   Data           8  glcd_simulation.o(.rodata.str1.1)
+    .L.str.30                                0x00004a65   Data           8  glcd_simulation.o(.rodata.str1.1)
+    .L.str.29                                0x00004a6d   Data           8  glcd_simulation.o(.rodata.str1.1)
+    .L.str.28                                0x00004a75   Data           8  glcd_simulation.o(.rodata.str1.1)
+    .L.str.64                                0x00004a78   Data           5  glcd_simulation.o(.rodata.str1.1)
+    .L.str.11                                0x00004a7a   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.74                                0x00004a7d   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.75                                0x00004a80   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.25                                0x00004a83   Data          16  glcd_simulation.o(.rodata.str1.1)
+    .L.str.13                                0x00004a93   Data           6  glcd_simulation.o(.rodata.str1.1)
+    .L.str.27                                0x00004a99   Data           8  glcd_simulation.o(.rodata.str1.1)
+    .L.str.17                                0x00004aa1   Data           6  glcd_simulation.o(.rodata.str1.1)
+    .L.str.65                                0x00004aa4   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.19                                0x00004aa7   Data           6  glcd_simulation.o(.rodata.str1.1)
+    .L.str.66                                0x00004aaa   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.41                                0x00004aad   Data           7  glcd_simulation.o(.rodata.str1.1)
+    .L.str.18                                0x00004ab4   Data           6  glcd_simulation.o(.rodata.str1.1)
+    .L.str.67                                0x00004ab7   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.16                                0x00004aba   Data           6  glcd_simulation.o(.rodata.str1.1)
+    .L.str.68                                0x00004abd   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.21                                0x00004ac0   Data           6  glcd_simulation.o(.rodata.str1.1)
+    .L.str.69                                0x00004ac3   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.42                                0x00004ac6   Data           7  glcd_simulation.o(.rodata.str1.1)
+    .L.str.22                                0x00004acd   Data           6  glcd_simulation.o(.rodata.str1.1)
+    .L.str.70                                0x00004ad0   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.20                                0x00004ad3   Data           6  glcd_simulation.o(.rodata.str1.1)
+    .L.str.71                                0x00004ad6   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.72                                0x00004ad9   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.43                                0x00004adc   Data           7  glcd_simulation.o(.rodata.str1.1)
+    .L.str.73                                0x00004ae0   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.63                                0x00004ae3   Data           5  glcd_simulation.o(.rodata.str1.1)
+    .L.str.23                                0x00004ae8   Data           5  glcd_simulation.o(.rodata.str1.1)
+    .L.str.3                                 0x00004aed   Data           5  glcd_simulation.o(.rodata.str1.1)
+    .L.str.39                                0x00004af2   Data           6  glcd_simulation.o(.rodata.str1.1)
+    .L.str.26                                0x00004af8   Data          14  glcd_simulation.o(.rodata.str1.1)
+    .L.str.12                                0x00004b06   Data           5  glcd_simulation.o(.rodata.str1.1)
+    .L.str.14                                0x00004b08   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.37                                0x00004b0b   Data           4  glcd_simulation.o(.rodata.str1.1)
+    .L.str.38                                0x00004b0f   Data          18  glcd_simulation.o(.rodata.str1.1)
+    .L.str.62                                0x00004b21   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.24                                0x00004b24   Data          27  glcd_simulation.o(.rodata.str1.1)
+    .L.str.36                                0x00004b3f   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.44                                0x00004b49   Data           9  glcd_simulation.o(.rodata.str1.1)
+    .L.str.4                                 0x00004b52   Data          17  glcd_simulation.o(.rodata.str1.1)
+    .L.str.5                                 0x00004b63   Data          11  glcd_simulation.o(.rodata.str1.1)
+    .L.str.61                                0x00004b6e   Data           4  glcd_simulation.o(.rodata.str1.1)
+    .L.str.40                                0x00004b72   Data          12  glcd_simulation.o(.rodata.str1.1)
+    .L.str.8                                 0x00004b7e   Data           3  glcd_simulation.o(.rodata.str1.1)
+    .L.str.10                                0x00004b7f   Data           2  glcd_simulation.o(.rodata.str1.1)
+    .L.str.57                                0x00004b81   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.54                                0x00004b8b   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.56                                0x00004b95   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.46                                0x00004b9f   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.60                                0x00004ba9   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.51                                0x00004bb3   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.45                                0x00004bbd   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.55                                0x00004bc7   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.50                                0x00004bd1   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.49                                0x00004bdb   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.59                                0x00004be5   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.58                                0x00004bef   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.48                                0x00004bf9   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.53                                0x00004c03   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.15                                0x00004c0b   Data           2  glcd_simulation.o(.rodata.str1.1)
+    .L.str.7                                 0x00004c0d   Data           2  glcd_simulation.o(.rodata.str1.1)
+    .L.str                                   0x00004c0f   Data          12  glcd_simulation.o(.rodata.str1.1)
+    .L.str.1                                 0x00004c20   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.47                                0x00004c2a   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.52                                0x00004c34   Data          10  glcd_simulation.o(.rodata.str1.1)
+    .L.str.6                                 0x00004c3e   Data           2  glcd_simulation.o(.rodata.str1.1)
+    locale$$data                             0x00004c60   Section       28  lc_numeric_c.o(locale$$data)
+    __lcnum_c_name                           0x00004c64   Data           2  lc_numeric_c.o(locale$$data)
+    __lcnum_c_start                          0x00004c6c   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_point                          0x00004c78   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_thousands                      0x00004c7a   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_grouping                       0x00004c7b   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_end                            0x00004c7c   Data           0  lc_numeric_c.o(locale$$data)
+    locale$$data                             0x00004c7c   Section      272  lc_ctype_c.o(locale$$data)
+    __lcctype_c_name                         0x00004c80   Data           2  lc_ctype_c.o(locale$$data)
+    __lcctype_c_start                        0x00004c88   Data           0  lc_ctype_c.o(locale$$data)
+    __lcctype_c_end                          0x00004d8c   Data           0  lc_ctype_c.o(locale$$data)
     i7Seg                                    0x10000000   Data           2  glcd_simulation.o(.data.i7Seg)
     [Anonymous Symbol]                       0x10000000   Section        0  glcd_simulation.o(.data.i7Seg)
     ibgCol                                   0x10000002   Data           2  glcd_simulation.o(.data.ibgCol)
@@ -1345,31 +1345,31 @@ Image Symbol Table
     GLCD_S_SetBackColor                      0x00001d6d   Thumb Code   432  glcd_simulation.o(.text.GLCD_S_SetBackColor)
     GLCD_S_SetTextColor                      0x00001f1d   Thumb Code   432  glcd_simulation.o(.text.GLCD_S_SetTextColor)
     GLCD_S_Simulation                        0x000020cd   Thumb Code  6702  glcd_simulation.o(.text.GLCD_S_Simulation)
-    Get_Mkey                                 0x00003afd   Thumb Code   236  keys.o(.text.Get_Mkey)
-    Matrix_Init                              0x00003be9   Thumb Code   282  keys.o(.text.Matrix_Init)
-    SetCursorPosition                        0x00003d05   Thumb Code    30  glcd_simulation.o(.text.SetCursorPosition)
-    Switch_Init                              0x00003d25   Thumb Code   298  keys.o(.text.Switch_Init)
-    SystemInit                               0x00003e51   Thumb Code   388  system_lpc17xx.o(.text.SystemInit)
-    fputc                                    0x00003fd5   Thumb Code    54  glcd_simulation.o(.text.fputc)
-    main                                     0x0000400d   Thumb Code   150  test_2.o(.text.main)
-    _btod_d2e                                0x000040a3   Thumb Code    62  btod.o(CL$$btod_d2e)
-    _d2e_denorm_low                          0x000040e1   Thumb Code    70  btod.o(CL$$btod_d2e_denorm_low)
-    _d2e_norm_op1                            0x00004127   Thumb Code    96  btod.o(CL$$btod_d2e_norm_op1)
-    __btod_div_common                        0x00004189   Thumb Code   696  btod.o(CL$$btod_div_common)
-    _e2e                                     0x000044c1   Thumb Code   220  btod.o(CL$$btod_e2e)
-    _btod_ediv                               0x0000459d   Thumb Code    42  btod.o(CL$$btod_ediv)
-    _btod_emul                               0x000045c7   Thumb Code    42  btod.o(CL$$btod_emul)
-    __btod_mult_common                       0x000045f1   Thumb Code   580  btod.o(CL$$btod_mult_common)
-    __ARM_fpclassify                         0x00004835   Thumb Code    40  fpclassify.o(i.__ARM_fpclassify)
-    _is_digit                                0x0000485d   Thumb Code    14  __printf_wp.o(i._is_digit)
-    _get_lc_numeric                          0x0000486d   Thumb Code    44  lc_numeric_c.o(locale$$code)
-    _get_lc_ctype                            0x00004899   Thumb Code    44  lc_ctype_c.o(locale$$code)
-    _printf_fp_dec                           0x000048c5   Thumb Code     4  printf1.o(x$fpl$printf1)
-    _printf_fp_hex                           0x000048c9   Thumb Code     4  printf2.o(x$fpl$printf2)
-    __I$use$fp                               0x000048cc   Number         0  usenofp.o(x$fpl$usenofp)
-    Region$$Table$$Base                      0x00004c04   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00004c24   Number         0  anon$$obj.o(Region$$Table)
-    __ctype                                  0x00004c4d   Data           0  lc_ctype_c.o(locale$$data)
+    Get_Mkey                                 0x00003afd   Thumb Code   296  keys.o(.text.Get_Mkey)
+    Matrix_Init                              0x00003c25   Thumb Code   282  keys.o(.text.Matrix_Init)
+    SetCursorPosition                        0x00003d41   Thumb Code    30  glcd_simulation.o(.text.SetCursorPosition)
+    Switch_Init                              0x00003d61   Thumb Code   298  keys.o(.text.Switch_Init)
+    SystemInit                               0x00003e8d   Thumb Code   388  system_lpc17xx.o(.text.SystemInit)
+    fputc                                    0x00004011   Thumb Code    54  glcd_simulation.o(.text.fputc)
+    main                                     0x00004049   Thumb Code   150  test_2.o(.text.main)
+    _btod_d2e                                0x000040df   Thumb Code    62  btod.o(CL$$btod_d2e)
+    _d2e_denorm_low                          0x0000411d   Thumb Code    70  btod.o(CL$$btod_d2e_denorm_low)
+    _d2e_norm_op1                            0x00004163   Thumb Code    96  btod.o(CL$$btod_d2e_norm_op1)
+    __btod_div_common                        0x000041c5   Thumb Code   696  btod.o(CL$$btod_div_common)
+    _e2e                                     0x000044fd   Thumb Code   220  btod.o(CL$$btod_e2e)
+    _btod_ediv                               0x000045d9   Thumb Code    42  btod.o(CL$$btod_ediv)
+    _btod_emul                               0x00004603   Thumb Code    42  btod.o(CL$$btod_emul)
+    __btod_mult_common                       0x0000462d   Thumb Code   580  btod.o(CL$$btod_mult_common)
+    __ARM_fpclassify                         0x00004871   Thumb Code    40  fpclassify.o(i.__ARM_fpclassify)
+    _is_digit                                0x00004899   Thumb Code    14  __printf_wp.o(i._is_digit)
+    _get_lc_numeric                          0x000048a9   Thumb Code    44  lc_numeric_c.o(locale$$code)
+    _get_lc_ctype                            0x000048d5   Thumb Code    44  lc_ctype_c.o(locale$$code)
+    _printf_fp_dec                           0x00004901   Thumb Code     4  printf1.o(x$fpl$printf1)
+    _printf_fp_hex                           0x00004905   Thumb Code     4  printf2.o(x$fpl$printf2)
+    __I$use$fp                               0x00004908   Number         0  usenofp.o(x$fpl$usenofp)
+    Region$$Table$$Base                      0x00004c40   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00004c60   Number         0  anon$$obj.o(Region$$Table)
+    __ctype                                  0x00004c89   Data           0  lc_ctype_c.o(locale$$data)
     __libspace_start                         0x10000008   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x10000068   Data           0  libspace.o(.bss)
     __stdout                                 0x1000006c   Data           4  glcd_simulation.o(.bss.__stdout)
@@ -1382,9 +1382,9 @@ Memory Map of the image
 
   Image Entry point : 0x000000cd
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00004d58, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00004d98, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00004d50, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00004d8c, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1518,55 +1518,55 @@ Memory Map of the image
     0x00001f1c   0x00001f1c   0x000001b0   Code   RO           33    .text.GLCD_S_SetTextColor  glcd_simulation.o
     0x000020cc   0x000020cc   0x00001a2e   Code   RO           37    .text.GLCD_S_Simulation  glcd_simulation.o
     0x00003afa   0x00003afa   0x00000002   PAD
-    0x00003afc   0x00003afc   0x000000ec   Code   RO          136    .text.Get_Mkey      keys.o
-    0x00003be8   0x00003be8   0x0000011a   Code   RO          134    .text.Matrix_Init   keys.o
-    0x00003d02   0x00003d02   0x00000002   PAD
-    0x00003d04   0x00003d04   0x0000001e   Code   RO           23    .text.SetCursorPosition  glcd_simulation.o
-    0x00003d22   0x00003d22   0x00000002   PAD
-    0x00003d24   0x00003d24   0x0000012a   Code   RO          110    .text.Switch_Init   keys.o
-    0x00003e4e   0x00003e4e   0x00000002   PAD
-    0x00003e50   0x00003e50   0x00000184   Code   RO          207    .text.SystemInit    system_lpc17xx.o
-    0x00003fd4   0x00003fd4   0x00000036   Code   RO           19    .text.fputc         glcd_simulation.o
-    0x0000400a   0x0000400a   0x00000002   PAD
-    0x0000400c   0x0000400c   0x00000096   Code   RO            2    .text.main          test_2.o
-    0x000040a2   0x000040a2   0x0000003e   Code   RO          434    CL$$btod_d2e        c_w.l(btod.o)
-    0x000040e0   0x000040e0   0x00000046   Code   RO          436    CL$$btod_d2e_denorm_low  c_w.l(btod.o)
-    0x00004126   0x00004126   0x00000060   Code   RO          435    CL$$btod_d2e_norm_op1  c_w.l(btod.o)
-    0x00004186   0x00004186   0x00000002   PAD
-    0x00004188   0x00004188   0x00000338   Code   RO          444    CL$$btod_div_common  c_w.l(btod.o)
-    0x000044c0   0x000044c0   0x000000dc   Code   RO          441    CL$$btod_e2e        c_w.l(btod.o)
-    0x0000459c   0x0000459c   0x0000002a   Code   RO          438    CL$$btod_ediv       c_w.l(btod.o)
-    0x000045c6   0x000045c6   0x0000002a   Code   RO          437    CL$$btod_emul       c_w.l(btod.o)
-    0x000045f0   0x000045f0   0x00000244   Code   RO          443    CL$$btod_mult_common  c_w.l(btod.o)
-    0x00004834   0x00004834   0x00000028   Code   RO          475    i.__ARM_fpclassify  m_ws.l(fpclassify.o)
-    0x0000485c   0x0000485c   0x0000000e   Code   RO          317    i._is_digit         c_w.l(__printf_wp.o)
-    0x0000486a   0x0000486a   0x00000002   PAD
-    0x0000486c   0x0000486c   0x0000002c   Code   RO          459    locale$$code        c_w.l(lc_numeric_c.o)
-    0x00004898   0x00004898   0x0000002c   Code   RO          487    locale$$code        c_w.l(lc_ctype_c.o)
-    0x000048c4   0x000048c4   0x00000004   Code   RO          364    x$fpl$printf1       fz_ws.l(printf1.o)
-    0x000048c8   0x000048c8   0x00000004   Code   RO          366    x$fpl$printf2       fz_ws.l(printf2.o)
-    0x000048cc   0x000048cc   0x00000000   Code   RO          372    x$fpl$usenofp       fz_ws.l(usenofp.o)
-    0x000048cc   0x000048cc   0x00000008   Data   RO          276    .constdata          c_w.l(_printf_wctomb.o)
-    0x000048d4   0x000048d4   0x00000028   Data   RO          305    .constdata          c_w.l(_printf_hex_int_ll_ptr.o)
-    0x000048fc   0x000048fc   0x00000011   Data   RO          325    .constdata          c_w.l(__printf_flags_ss_wp.o)
-    0x0000490d   0x0000490d   0x00000026   Data   RO          399    .constdata          c_w.l(_printf_fp_hex.o)
-    0x00004933   0x00004933   0x00000001   PAD
-    0x00004934   0x00004934   0x00000094   Data   RO          432    .constdata          c_w.l(bigflt0.o)
-    0x000049c8   0x000049c8   0x00000035   Data   RO            4    .rodata.str1.1      test_2.o
-    0x000049fd   0x000049fd   0x00000207   Data   RO           65    .rodata.str1.1      glcd_simulation.o
-    0x00004c04   0x00004c04   0x00000020   Data   RO          622    Region$$Table       anon$$obj.o
-    0x00004c24   0x00004c24   0x0000001c   Data   RO          458    locale$$data        c_w.l(lc_numeric_c.o)
-    0x00004c40   0x00004c40   0x00000110   Data   RO          486    locale$$data        c_w.l(lc_ctype_c.o)
+    0x00003afc   0x00003afc   0x00000128   Code   RO          136    .text.Get_Mkey      keys.o
+    0x00003c24   0x00003c24   0x0000011a   Code   RO          134    .text.Matrix_Init   keys.o
+    0x00003d3e   0x00003d3e   0x00000002   PAD
+    0x00003d40   0x00003d40   0x0000001e   Code   RO           23    .text.SetCursorPosition  glcd_simulation.o
+    0x00003d5e   0x00003d5e   0x00000002   PAD
+    0x00003d60   0x00003d60   0x0000012a   Code   RO          110    .text.Switch_Init   keys.o
+    0x00003e8a   0x00003e8a   0x00000002   PAD
+    0x00003e8c   0x00003e8c   0x00000184   Code   RO          207    .text.SystemInit    system_lpc17xx.o
+    0x00004010   0x00004010   0x00000036   Code   RO           19    .text.fputc         glcd_simulation.o
+    0x00004046   0x00004046   0x00000002   PAD
+    0x00004048   0x00004048   0x00000096   Code   RO            2    .text.main          test_2.o
+    0x000040de   0x000040de   0x0000003e   Code   RO          434    CL$$btod_d2e        c_w.l(btod.o)
+    0x0000411c   0x0000411c   0x00000046   Code   RO          436    CL$$btod_d2e_denorm_low  c_w.l(btod.o)
+    0x00004162   0x00004162   0x00000060   Code   RO          435    CL$$btod_d2e_norm_op1  c_w.l(btod.o)
+    0x000041c2   0x000041c2   0x00000002   PAD
+    0x000041c4   0x000041c4   0x00000338   Code   RO          444    CL$$btod_div_common  c_w.l(btod.o)
+    0x000044fc   0x000044fc   0x000000dc   Code   RO          441    CL$$btod_e2e        c_w.l(btod.o)
+    0x000045d8   0x000045d8   0x0000002a   Code   RO          438    CL$$btod_ediv       c_w.l(btod.o)
+    0x00004602   0x00004602   0x0000002a   Code   RO          437    CL$$btod_emul       c_w.l(btod.o)
+    0x0000462c   0x0000462c   0x00000244   Code   RO          443    CL$$btod_mult_common  c_w.l(btod.o)
+    0x00004870   0x00004870   0x00000028   Code   RO          475    i.__ARM_fpclassify  m_ws.l(fpclassify.o)
+    0x00004898   0x00004898   0x0000000e   Code   RO          317    i._is_digit         c_w.l(__printf_wp.o)
+    0x000048a6   0x000048a6   0x00000002   PAD
+    0x000048a8   0x000048a8   0x0000002c   Code   RO          459    locale$$code        c_w.l(lc_numeric_c.o)
+    0x000048d4   0x000048d4   0x0000002c   Code   RO          487    locale$$code        c_w.l(lc_ctype_c.o)
+    0x00004900   0x00004900   0x00000004   Code   RO          364    x$fpl$printf1       fz_ws.l(printf1.o)
+    0x00004904   0x00004904   0x00000004   Code   RO          366    x$fpl$printf2       fz_ws.l(printf2.o)
+    0x00004908   0x00004908   0x00000000   Code   RO          372    x$fpl$usenofp       fz_ws.l(usenofp.o)
+    0x00004908   0x00004908   0x00000008   Data   RO          276    .constdata          c_w.l(_printf_wctomb.o)
+    0x00004910   0x00004910   0x00000028   Data   RO          305    .constdata          c_w.l(_printf_hex_int_ll_ptr.o)
+    0x00004938   0x00004938   0x00000011   Data   RO          325    .constdata          c_w.l(__printf_flags_ss_wp.o)
+    0x00004949   0x00004949   0x00000026   Data   RO          399    .constdata          c_w.l(_printf_fp_hex.o)
+    0x0000496f   0x0000496f   0x00000001   PAD
+    0x00004970   0x00004970   0x00000094   Data   RO          432    .constdata          c_w.l(bigflt0.o)
+    0x00004a04   0x00004a04   0x00000035   Data   RO            4    .rodata.str1.1      test_2.o
+    0x00004a39   0x00004a39   0x00000207   Data   RO           65    .rodata.str1.1      glcd_simulation.o
+    0x00004c40   0x00004c40   0x00000020   Data   RO          622    Region$$Table       anon$$obj.o
+    0x00004c60   0x00004c60   0x0000001c   Data   RO          458    locale$$data        c_w.l(lc_numeric_c.o)
+    0x00004c7c   0x00004c7c   0x00000110   Data   RO          486    locale$$data        c_w.l(lc_ctype_c.o)
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x10000000, Load base: 0x00004d50, Size: 0x00000330, Max: 0x00008000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x10000000, Load base: 0x00004d90, Size: 0x00000330, Max: 0x00008000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x10000000   0x00004d50   0x00000002   Data   RW           85    .data.i7Seg         glcd_simulation.o
-    0x10000002   0x00004d52   0x00000002   Data   RW           66    .data.ibgCol        glcd_simulation.o
-    0x10000004   0x00004d54   0x00000002   Data   RW           67    .data.itextCol      glcd_simulation.o
-    0x10000006   0x00004d56   0x00000002   PAD
+    0x10000000   0x00004d90   0x00000002   Data   RW           85    .data.i7Seg         glcd_simulation.o
+    0x10000002   0x00004d92   0x00000002   Data   RW           66    .data.ibgCol        glcd_simulation.o
+    0x10000004   0x00004d94   0x00000002   Data   RW           67    .data.itextCol      glcd_simulation.o
+    0x10000006   0x00004d96   0x00000002   PAD
     0x10000008        -       0x00000060   Zero   RW          478    .bss                c_w.l(libspace.o)
     0x10000068        -       0x00000002   Zero   RW           70    .bss.GLCD_S_Simulation.iTA12_iz1  glcd_simulation.o
     0x1000006a        -       0x00000002   Zero   RW           69    .bss.GLCD_S_Simulation.iTA12_time  glcd_simulation.o
@@ -1586,7 +1586,7 @@ Memory Map of the image
     0x10000128        -       0x00000002   Zero   RW           81    .bss.iS_TA7         glcd_simulation.o
     0x1000012a        -       0x00000002   Zero   RW           82    .bss.iS_TA8         glcd_simulation.o
     0x1000012c        -       0x00000002   Zero   RW           83    .bss.iS_TA9         glcd_simulation.o
-    0x1000012e   0x00004d56   0x00000002   PAD
+    0x1000012e   0x00004d96   0x00000002   PAD
     0x10000130        -       0x00000000   Zero   RW          193    HEAP                startup_lpc17xx.o
     0x10000130        -       0x00000200   Zero   RW          192    STACK               startup_lpc17xx.o
 
@@ -1599,13 +1599,13 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
      10100          0        519          6        198      16512   glcd_simulation.o
-       816          0          0          0          0       5179   keys.o
+       876          0          0          0          0       5266   keys.o
         64         26        204          0        512       1092   startup_lpc17xx.o
        388          0          0          0          0       2329   system_lpc17xx.o
        150          0         53          0          0        694   test_2.o
 
     ----------------------------------------------------------------------
-     11534         26        808          8        712      25806   Object Totals
+     11594         26        808          8        712      25893   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         16          0          0          2          2          0   (incl. Padding)
 
@@ -1715,15 +1715,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     18432        294       1360          8        808      27770   Grand Totals
-     18432        294       1360          8        808      27770   ELF Image Totals
-     18432        294       1360          8          0          0   ROM Totals
+     18492        294       1360          8        808      27857   Grand Totals
+     18492        294       1360          8        808      27857   ELF Image Totals
+     18492        294       1360          8          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                19792 (  19.33kB)
+    Total RO  Size (Code + RO Data)                19852 (  19.39kB)
     Total RW  Size (RW Data + ZI Data)               816 (   0.80kB)
-    Total ROM Size (Code + RO Data + RW Data)      19800 (  19.34kB)
+    Total ROM Size (Code + RO Data + RW Data)      19860 (  19.39kB)
 
 ==============================================================================
 
