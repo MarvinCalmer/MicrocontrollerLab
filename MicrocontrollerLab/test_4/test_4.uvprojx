@@ -424,6 +424,11 @@
               <FileType>5</FileType>
               <FilePath>..\Peripherals\include\prio.h</FilePath>
             </File>
+            <File>
+              <FileName>DMA.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Peripherals\src\DMA.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -851,6 +856,11 @@
               <FileName>prio.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\Peripherals\include\prio.h</FilePath>
+            </File>
+            <File>
+              <FileName>DMA.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Peripherals\src\DMA.c</FilePath>
             </File>
           </Files>
         </Group>

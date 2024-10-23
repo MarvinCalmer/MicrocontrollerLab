@@ -5,6 +5,7 @@
 ".\objects\gpio.o"
 ".\objects\adc.o"
 ".\objects\lcd.o"
+".\objects\dma.o"
 ".\objects\startup_lpc17xx.o"
 ".\objects\system_lpc17xx.o"
 --strict --scatter ".\Objects\test.sct"

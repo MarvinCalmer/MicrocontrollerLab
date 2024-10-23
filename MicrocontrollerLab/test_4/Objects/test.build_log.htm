@@ -22,15 +22,22 @@ Dialog DLL:      TARMP1.DLL V1.27.1.0
  
 <h2>Project:</h2>
 C:\Users\marvi\Documents\GitHub\MicrocontrollerLab\MicrocontrollerLab\test_4\test_4.uvprojx
-Project File Date:  10/22/2024
+Project File Date:  10/23/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.22', folder: 'C:\Users\marvi\AppData\Local\Keil_v5\ARM\ARMCLANG\Bin'
-Build target 'Simulation'
-compiling test_4.c...
+Rebuild target 'Simulation'
+compiling DMA.c...
+compiling gpio.c...
+compiling system_LPC17xx.c...
+assembling startup_LPC17xx.s...
 compiling adc.c...
+compiling lcd.c...
+compiling test_4.c...
+compiling GLCD_SPI_LPC1700.c...
+compiling glcd_simulation.c...
 linking...
-Program Size: Code=12956 RO-data=1412 RW-data=4 ZI-data=828  
+Program Size: Code=23692 RO-data=1740 RW-data=12 ZI-data=1628  
 ".\Objects\test.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -58,10 +65,10 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE@6.1.0
 
    * Component: Keil::Device:Startup@1.0.0
+      Include file:  RTE_Driver/Config/RTE_Device.h
       Source file:   Device/Source/ARM/startup_LPC17xx.s
       Include file:  Device/Include/LPC17xx.h
       Source file:   Device/Source/system_LPC17xx.c
-      Include file:  RTE_Driver/Config/RTE_Device.h
 Build Time Elapsed:  00:00:01
 </pre>
 </body>
