@@ -85,7 +85,7 @@ int main(void)
 	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
 	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test2.1 switchpos");
-	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group .... ");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
 	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"Binary: ");
 	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"hex: ");
 	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"Decimal: ");
@@ -124,7 +124,7 @@ int main(void)
 	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
 	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test2.2 Switches");
-	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group .... ");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
 	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"Value");
 	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"Voltage");
 	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"Temperature");
@@ -162,7 +162,7 @@ int main(void)
 	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
 	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test2.3 Matrix");
-	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group .... ");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
 	GLCD_DisplayString(8,0,FONT_16x24,(unsigned char*)"Key");
 	GLCD_Simulation();
 	

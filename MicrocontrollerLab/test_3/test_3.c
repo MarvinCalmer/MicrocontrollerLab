@@ -60,7 +60,7 @@ int main(void)
 	GLCD_SetTextColor(White);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
 	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test2.3 Matrix");
-	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group .... ");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
 	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"LED0 Flashes ");
 	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"50ms on, 150 ms off,");
   GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"50ms on, 750 ms off");
@@ -121,7 +121,7 @@ int main(void)
 	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
 	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test3.2 Button Count");
-	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group .... ");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
 	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"TA12 count=");
 	GLCD_SetBackColor(White);
 	GLCD_SetTextColor(Black);
@@ -202,7 +202,7 @@ int main(void)
 	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
 	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test3.3 Joystick Count");
-	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group .... ");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
 	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"up:");
 	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"down:");
 	GLCD_DisplayString(7,0,FONT_16x24,(unsigned char*)"left:");
@@ -338,7 +338,7 @@ int main(void)
 	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
 	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test3.3 running light");
-	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group .... ");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
 	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"running light");
 	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"delay(ms):");
 	GLCD_DisplayString(7,0,FONT_16x24,(unsigned char*)"direction:");
@@ -408,7 +408,7 @@ int main(void)
 	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
 	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test3.5 Encoder");
-	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group .... ");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
 	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"Counter:");
 	GLCD_Simulation();
 	while(1)
@@ -630,7 +630,7 @@ int main(void)
 	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
 	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test3.5 Encoder");
-	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group .... ");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
 	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"Actual Time of Day:");
 	GLCD_Simulation();
 	while(1)
