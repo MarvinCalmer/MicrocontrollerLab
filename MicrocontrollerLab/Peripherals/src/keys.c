@@ -165,9 +165,10 @@ extern void Matrix_Init(void){
 	LPC_PINCON->PINMODE0 &= ~( 3 << 10);LPC_PINCON->PINMODE0 |= ( 2 << 10); //P0.5
 	LPC_PINCON->PINMODE7 &= ~( 3 << 20);LPC_PINCON->PINMODE7 |= ( 2 << 20); //P3.26
 	
-	LPC_GPIO2->FIODIR &= ~(1<<3);
-	LPC_GPIO2->FIODIR &= ~(1<<4);
-	LPC_GPIO2->FIODIR &= ~(1<<5);
+	LPC_GPIO2->FIODIR |= (1<<3);
+	LPC_GPIO2->FIODIR |= (1<<4);
+	LPC_GPIO2->FIODIR |= (1<<5);
+	
 	LPC_GPIO0->FIODIR &= ~(1<<4);
 	LPC_GPIO0->FIODIR &= ~(1<<5);
 	LPC_GPIO3->FIODIR &= ~(1<<26);
@@ -184,7 +185,99 @@ extern unsigned char Get_Mkey(void){
 				//Set current Row
 				LPC_GPIO2->FIOSET = (1 << (3+row)); // Set current Row
 
-				// Test:	maybe breaks after first check?
+//				// Test:	maybe breaks after first check? indeed
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
 //				unsigned char key = 
 //						(LPC_GPIO0->FIOPIN & (1 << 4)) ? (row == 0 ? '1' : (row == 1 ? '4' : '7')) :
 //						(LPC_GPIO0->FIOPIN & (1 << 5)) ? (row == 0 ? '2' : (row == 1 ? '5' : '8')) :
@@ -192,45 +285,25 @@ extern unsigned char Get_Mkey(void){
 //				
 //	
 //		return key;
-		 
-		  if ((LPC_GPIO0->FIOPIN & (1 << 4))) {  // Column 1 (P0.4)
-            if (row == 0) return '1';  // Row 1, Column 1
-            if (row == 1) return '4';  // Row 2, Column 1
-            if (row == 2) return '7';  // Row 3, Column 1
-        }
-        if ((LPC_GPIO0->FIOPIN & (1 << 5))) {  // Column 2 (P0.5)
-            if (row == 0) return '2';  // Row 1, Column 2
-            if (row == 1) return '5';  // Row 2, Column 2
-            if (row == 2) return '8';  // Row 3, Column 2
-        }
-        if ((LPC_GPIO3->FIOPIN & (1 << 26))) {  // Column 3 (P3.26)
-            if (row == 0) return '3';  // Row 1, Column 3
-            if (row == 1) return '6';  // Row 2, Column 3
-            if (row == 2) return '9';  // Row 3, Column 3
-        }
 				
 				// ASCII
-//				if ((LPC_GPIO0->FIOPIN & (1 << 4))) {  // Column 1 (P0.4)
-//            if (row == 0) return 0x31;  // Row 1, Column 1
-//            if (row == 1) return 0x34;  // Row 2, Column 1
-//            if (row == 2) return 0x37;  // Row 3, Column 1
-//        }
-//        if ((LPC_GPIO0->FIOPIN & (1 << 5))) {  // Column 2 (P0.5)
-//            if (row == 0) return 0x32;  // Row 1, Column 2
-//            if (row == 1) return 0x35;  // Row 2, Column 2
-//            if (row == 2) return 0x38;  // Row 3, Column 2
-//        }
-//        if ((LPC_GPIO3->FIOPIN & (1 << 26))) {  // Column 3 (P3.26)
-//            if (row == 0) return 0x33;  // Row 1, Column 3
-//            if (row == 1) return 0x36;  // Row 2, Column 3
-//            if (row == 2) return 0x39;  // Row 3, Column 3
-//        }
+				if ((LPC_GPIO0->FIOPIN & (1 << 4))) {  // Column 1 (P0.4)
+            if (row == 0) return 0x31;  // Row 1, Column 1
+            if (row == 1) return 0x34;  // Row 2, Column 1
+            if (row == 2) return 0x37;  // Row 3, Column 1
+        }
+        if ((LPC_GPIO0->FIOPIN & (1 << 5))) {  // Column 2 (P0.5)
+            if (row == 0) return 0x32;  // Row 1, Column 2
+            if (row == 1) return 0x35;  // Row 2, Column 2
+            if (row == 2) return 0x38;  // Row 3, Column 2
+        }
+        if ((LPC_GPIO3->FIOPIN & (1 << 26))) {  // Column 3 (P3.26)
+            if (row == 0) return 0x33;  // Row 1, Column 3
+            if (row == 1) return 0x36;  // Row 2, Column 3
+            if (row == 2) return 0x39;  // Row 3, Column 3
+        }
 				
 		}
-	 // Resets all Rows 
-		LPC_GPIO2->FIOCLR = (1 << 3); // Clear P2.3 (Row 1)
-		LPC_GPIO2->FIOCLR = (1 << 4); // Clear P2.4 (Row 2)
-		LPC_GPIO2->FIOCLR = (1 << 5); // Clear P2.5 (Row 3)
 		
 	 return 0x20;
 }

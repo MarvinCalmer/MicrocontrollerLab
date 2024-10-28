@@ -390,11 +390,11 @@ void rolchar(uint8_t* value, uint8_t dir) {
 
 int main(void)
 {	
-	#define minimum 100
-	#define maximum 300
+	#define minimum 100000
+	#define maximum 1000000
 	
 	uint8_t dir=0, value;
-	uint32_t DELAY_LED=5, DELAY_JOYSTICK=1;
+	uint32_t DELAY_LED=500000, DELAY_JOYSTICK=10000;
 	uint32_t delay_led=0, delay_joystick=0;
 	//include the necessary init code here
 	GLCD_Init();
@@ -409,18 +409,34 @@ int main(void)
 	
 	while(1)
 	{
+		if (delay_joystick>DELAY_JOYSTICK) {
+		 delay_joystick =0;
+		 LPC_GPIO2->FIOPIN ^=(1UL<<1); //Toggle, output P2.1 (PWM2.2) to the
+		 //logic analyzer/ oscilloscop
+		 if (Get_RightStat()) dir=1;
+		 if (Get_LeftStat()) dir=0;
+		 if(Get_CenterStat())value=Get_SwitchPos();
+		 if (Get_UpStat() && DELAY_LED>=minimum	&& DELAY_LED<=maximum) {
+			DELAY_LED -=10000;
+			}
+			if (Get_DownStat() && DELAY_LED<=maximum && DELAY_LED>=minimum) {
+				DELAY_LED+=10000;
+			}
+		}
+		
+		
 		delay_led++; delay_joystick++;
 	 if (delay_led>DELAY_LED) {
-		 delay_led=0;
+ 		 delay_led=0;
 		 LPC_GPIO2->FIOPIN ^=(1UL<<0); //Toggle, output P2.0 (PWM2.1) to the
 		 // logic analyzer/ oscilloscop
 		 rolchar (&value,dir);
 		 LED_Out(value);
-		 if (DELAY_LED == 1) {
+		 if (DELAY_LED == minimum) {
 				RGB_Off(0); 
 				RGB_On(1);  
 				RGB_Off(2); 
-		} else if (DELAY_LED == 10) {
+		} else if (DELAY_LED == maximum) {
 				RGB_Off(1); 
 				RGB_On(2);  
 				RGB_Off(0); 
@@ -432,20 +448,7 @@ int main(void)
 		
 	 }
 
-	 if (delay_joystick>DELAY_JOYSTICK) {
-		 delay_joystick =0;
-		 LPC_GPIO2->FIOPIN ^=(1UL<<1); //Toggle, output P2.1 (PWM2.2) to the
-		 //logic analyzer/ oscilloscop
-		 if (Get_RightStat()) dir=1;
-		 if (Get_LeftStat()) dir=0;
-		 if(Get_CenterStat())value=Get_SwitchPos();
-		 if (Get_UpStat() && DELAY_LED>1) {
-			DELAY_LED--;
-			}
-    if (Get_DownStat() && DELAY_LED<10) {
-			DELAY_LED++;
-		}
-	}
+	 
 	 GLCD_Simulation();
 	} // end while(1)
 }	// end main()
