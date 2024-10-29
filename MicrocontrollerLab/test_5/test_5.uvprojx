@@ -419,6 +419,21 @@
               <FileType>1</FileType>
               <FilePath>..\Peripherals\src\lcd.c</FilePath>
             </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Peripherals\src\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Peripherals\src\adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>keys.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Peripherals\src\keys.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -841,6 +856,21 @@
               <FileName>lcd.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Peripherals\src\lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Peripherals\src\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Peripherals\src\adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>keys.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Peripherals\src\keys.c</FilePath>
             </File>
           </Files>
         </Group>

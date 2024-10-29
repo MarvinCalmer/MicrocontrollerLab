@@ -144,7 +144,6 @@ extern void Timer_Init (uint8_t TimerNum, uint32_t cycle, uint32_t TimerDivid, u
 			{LPC_SC->PCLKSEL0|=(3<<2);}
 		
 		// Clock
-		//LPC_TIM0->PR = (SystemCoreClock/cycle)-1;
 		LPC_TIM0->PR=(TimerDivid)-1;
 			
 		if (ResetMR == 0)
@@ -172,8 +171,139 @@ extern void Timer_Init (uint8_t TimerNum, uint32_t cycle, uint32_t TimerDivid, u
 			LPC_TIM0->MCR = 0;
 		}	
 		
-		
 		LPC_TIM0->TCR=(1<<1); //RESET Timer
 		LPC_TIM0->TCR=(1<<0); //START TIMER
+		} 
+	if (TimerNum==1)
+		{
+		LPC_SC->PCONP |= (1<<2);// Power Timer 0 
+		LPC_TIM1->CTCR = 0;	// TImer Mode
+			
+		LPC_SC->PCLKSEL0&=~(3<<2);		//PCLK=CCLK/4 Reset, default
+		if (pclksrc==1)
+			{LPC_SC->PCLKSEL0|=(1<<2);}
+		else if (pclksrc==2)
+			{LPC_SC->PCLKSEL0|=(2<<2);}
+		else if (pclksrc==3)
+			{LPC_SC->PCLKSEL0|=(3<<2);}
+		
+		// Clock
+		LPC_TIM1->PR=(TimerDivid)-1;
+			
+		if (ResetMR == 0)
+		{
+			LPC_TIM1->MCR |= (1<<1);					//configure to reset on match (MR0)
+			LPC_TIM1->MR0 = cycle-1;						//set Match register MR0 to cycle (reset of timer counter)
+		}
+		else if (ResetMR == 1)
+		{
+			LPC_TIM1->MCR |= (1<<4);					//configure to reset on match (MR1)
+			LPC_TIM1->MR1 = cycle-1;						//set Match register MR1 to cycle (reset of timer counter) 
+		}
+		else if (ResetMR == 2)
+		{
+			LPC_TIM1->MCR |= (1<<7);
+			LPC_TIM1->MR2 = cycle-1;
+		}
+		else if (ResetMR == 3)
+		{
+			LPC_TIM1->MCR |= (1<<10);
+			LPC_TIM1->MR3 = cycle-1;
+		}
+		else
+		{
+			LPC_TIM1->MCR = 0;
+		}	
+		
+		LPC_TIM1->TCR=(1<<1); //RESET Timer
+		LPC_TIM1->TCR=(1<<0); //START TIMER
+		} 
+	if (TimerNum==2)
+		{
+		LPC_SC->PCONP |= (1<<22);// Power Timer 0 
+		LPC_TIM2->CTCR = 0;	// TImer Mode
+			
+		LPC_SC->PCLKSEL0&=~(3<<2);		//PCLK=CCLK/4 Reset, default
+		if (pclksrc==1)
+			{LPC_SC->PCLKSEL0|=(1<<2);}
+		else if (pclksrc==2)
+			{LPC_SC->PCLKSEL0|=(2<<2);}
+		else if (pclksrc==3)
+			{LPC_SC->PCLKSEL0|=(3<<2);}
+		
+		// Clock
+		LPC_TIM2->PR=(TimerDivid)-1;
+			
+		if (ResetMR == 0)
+		{
+			LPC_TIM2->MCR |= (1<<1);					//configure to reset on match (MR0)
+			LPC_TIM2->MR0 = cycle-1;						//set Match register MR0 to cycle (reset of timer counter)
+		}
+		else if (ResetMR == 1)
+		{
+			LPC_TIM2->MCR |= (1<<4);					//configure to reset on match (MR1)
+			LPC_TIM2->MR1 = cycle-1;						//set Match register MR1 to cycle (reset of timer counter) 
+		}
+		else if (ResetMR == 2)
+		{
+			LPC_TIM2->MCR |= (1<<7);
+			LPC_TIM2->MR2 = cycle-1;
+		}
+		else if (ResetMR == 3)
+		{
+			LPC_TIM2->MCR |= (1<<10);
+			LPC_TIM2->MR3 = cycle-1;
+		}
+		else
+		{
+			LPC_TIM2->MCR = 0;
+		}	
+		
+		LPC_TIM2->TCR=(1<<1); //RESET Timer
+		LPC_TIM2->TCR=(1<<0); //START TIMER
+		} 
+	if (TimerNum==3)
+		{
+		LPC_SC->PCONP |= (1<<23);// Power Timer 0 
+		LPC_TIM3->CTCR = 0;	// TImer Mode
+			
+		LPC_SC->PCLKSEL0&=~(3<<2);		//PCLK=CCLK/4 Reset, default
+		if (pclksrc==1)
+			{LPC_SC->PCLKSEL0|=(1<<2);}
+		else if (pclksrc==2)
+			{LPC_SC->PCLKSEL0|=(2<<2);}
+		else if (pclksrc==3)
+			{LPC_SC->PCLKSEL0|=(3<<2);}
+		
+		// Clock
+		LPC_TIM3->PR=(TimerDivid)-1;
+			
+		if (ResetMR == 3)
+		{
+			LPC_TIM3->MCR |= (1<<1);					//configure to reset on match (MR0)
+			LPC_TIM3->MR0 = cycle-1;						//set Match register MR0 to cycle (reset of timer counter)
+		}
+		else if (ResetMR == 1)
+		{
+			LPC_TIM3->MCR |= (1<<4);					//configure to reset on match (MR1)
+			LPC_TIM3->MR1 = cycle-1;						//set Match register MR1 to cycle (reset of timer counter) 
+		}
+		else if (ResetMR == 2)
+		{
+			LPC_TIM3->MCR |= (1<<7);
+			LPC_TIM3->MR2 = cycle-1;
+		}
+		else if (ResetMR == 3)
+		{
+			LPC_TIM3->MCR |= (1<<10);
+			LPC_TIM3->MR3 = cycle-1;
+		}
+		else
+		{
+			LPC_TIM3->MCR = 0;
+		}	
+		
+		LPC_TIM3->TCR=(1<<1); //RESET Timer
+		LPC_TIM3->TCR=(1<<0); //START TIMER
 		} 
 }
