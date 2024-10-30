@@ -59,8 +59,10 @@ int main(void)
 	GLCD_SetBackColor(DarkGreen);
 	GLCD_SetTextColor(White);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
-	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test2.3 Matrix");
+	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"Test 3.1 System Tick");
 	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
+	GLCD_SetBackColor(White);
+	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"LED0 Flashes ");
 	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"50ms on, 150 ms off,");
   GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"50ms on, 750 ms off");
@@ -117,14 +119,14 @@ int main(void)
 	EINT1_IRQ_Init();
 	GLCD_Init();
 	GLCD_Clear(White);
-	GLCD_SetBackColor(Blue);
-	GLCD_SetTextColor(Black);
+	GLCD_SetBackColor(DarkGreen);
+	GLCD_SetTextColor(White);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
-	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test3.2 Button Count");
+	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"Test 3.2 Increment Counter");
 	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
-	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"TA12 count=");
 	GLCD_SetBackColor(White);
 	GLCD_SetTextColor(Black);
+	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"TA12 count=");
 
 	while(1)
 	{
@@ -198,18 +200,17 @@ int main(void)
 	JoyStick_IRQ_Init();
 	GLCD_Init();
 	GLCD_Clear(White);
-	GLCD_SetBackColor(Blue);
-	GLCD_SetTextColor(Black);
+	GLCD_SetBackColor(DarkGreen);
+	GLCD_SetTextColor(White);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
-	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test3.3 Joystick Count");
+	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"Test 3.3 Joystick Int");
 	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
+	GLCD_SetBackColor(White);
+	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"up:");
 	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"down:");
 	GLCD_DisplayString(7,0,FONT_16x24,(unsigned char*)"left:");
 	GLCD_DisplayString(8,0,FONT_16x24,(unsigned char*)"right:");
-
-	GLCD_SetBackColor(White);
-	GLCD_SetTextColor(Black);
 	GLCD_Simulation();
 	
 	while(1)
@@ -288,17 +289,22 @@ void EINT3_IRQHandler(){
 		//Joystick-UP
 		if(LPC_GPIOINT->IO0IntStatR&(1<<21)) 
 		{	
-			delay--;
+			if(delay>min_delay){
+				delay--;
+			}
 			//reset IRQ
-			LPC_GPIOINT->IO0IntClr=(1<<21);} 
+			LPC_GPIOINT->IO0IntClr=(1<<21);
+		} 
 		
 		//Joystick-Down
 		if(LPC_GPIOINT->IO0IntStatR&(1<<27)) 
 		{	
-			delay++; 
+			if(delay<max_delay){
+				delay++; 
+			} 
 			//reset IRQ
-			LPC_GPIOINT->IO0IntClr=(1<<27);} 
-		
+			LPC_GPIOINT->IO0IntClr=(1<<27);
+		}
 		//Joystick-left
 		if(LPC_GPIOINT->IO0IntStatR&(1<<25)) 
 		{	
@@ -334,12 +340,14 @@ int main(void)
 	LED_Init();
 	GLCD_Init();
 	GLCD_Clear(White);
-	GLCD_SetBackColor(White);
-	GLCD_SetTextColor(Black);
+	GLCD_SetBackColor(DarkGreen);
+	GLCD_SetTextColor(White);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
 	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test3.3 running light");
 	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
 	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"running light");
+	GLCD_SetBackColor(White);
+	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"delay(ms):");
 	GLCD_DisplayString(7,0,FONT_16x24,(unsigned char*)"direction:");
 	GLCD_DisplayString(8,0,FONT_16x24,(unsigned char*)"pattern:");
@@ -401,14 +409,16 @@ void EINT3_IRQHandler(){
 int main(void)
 {	
 	Encoder_Init();
-	RGB_Init();
+	RGB_Init();		// RGB in Simulation not running
 	GLCD_Init();
 	GLCD_Clear(White);
+	GLCD_SetBackColor(DarkGreen);
+	GLCD_SetTextColor(White);
+	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Lab Microprocessor");
+	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"Test3.4 Running Light");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
 	GLCD_SetBackColor(White);
 	GLCD_SetTextColor(Black);
-	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
-	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test3.5 Encoder");
-	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
 	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"Counter:");
 	GLCD_Simulation();
 	while(1)
@@ -537,7 +547,6 @@ void EINT3_IRQHandler(){
 				if(digit_pos==5 && set_time_sec<59){
 					set_time_sec+=1;
 				}
-				
 			}
 			//reset IRQ
 			LPC_GPIOINT->IO0IntClr=(1<<21);} 
@@ -580,17 +589,14 @@ void EINT3_IRQHandler(){
 			//shift Pos left 
 			if(digit_pos>0)
 				digit_pos--;
-			
 			//reset IRQ
 			LPC_GPIOINT->IO0IntClr=(1<<25);} 
-		 
 		//Joystick-right
 		if(LPC_GPIOINT->IO0IntStatR&(1<<28)) 
 		{	
 			//shift Pos right 
 			if(digit_pos<7)
 				digit_pos++;
-			
 			//reset IRQ
 			LPC_GPIOINT->IO0IntClr=(1<<28);} 
 		
@@ -606,11 +612,9 @@ void EINT3_IRQHandler(){
 				time_sec=set_time_sec;
 				set_Time=0;
 			}
-				
 			else{
 				set_Time=1;
 			}
-			
 			//reset IRQ
 			LPC_GPIOINT->IO0IntClr=(1UL<<3);} 
 	}
@@ -620,22 +624,23 @@ void EINT3_IRQHandler(){
 int main(void)
 {	
 	JoyStick_IRQ_Init();
+	// configure for correct Time --> ca 100 to 110 
 	SysTick_Config(SystemCoreClock/100);
 	SystemCoreClockUpdate();
-	
 
 	GLCD_Init();
 	GLCD_Clear(White);
+	GLCD_SetBackColor(DarkGreen);
+	GLCD_SetTextColor(White);
+	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Lab Microprocessor");
+	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"Test3.5 Encoder");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
 	GLCD_SetBackColor(White);
 	GLCD_SetTextColor(Black);
-	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
-	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test3.5 Encoder");
-	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
 	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"Actual Time of Day:");
 	GLCD_Simulation();
 	while(1)
 	{	
-
 		time_h=(time_h+time_min/60+time_sec/3600)%24;
 		time_min=(time_min+time_sec/60)%60;
 		time_sec=(time_sec)%60;
@@ -660,8 +665,7 @@ int main(void)
 			{GLCD_DisplayString(7,0,FONT_16x24,(unsigned char*)"SET   00:00:0X");
 	  GLCD_DisplayString(8,6,FONT_16x24,(unsigned char*)lcd_time(set_time_h,set_time_min,set_time_sec));}
 		
-		GLCD_Simulation();
-		
+		GLCD_Simulation();	
 	} // end while(1)
 }	// end main()
 
