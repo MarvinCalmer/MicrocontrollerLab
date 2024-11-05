@@ -13,27 +13,28 @@ extern void ADC_Init (uint8_t chsel, uint8_t intEn){
 		LPC_PINCON->PINSEL1 |= (1<<20);
 		//Select mode for input pins to no pullup nor pulldown
 		LPC_PINCON->PINMODE1 &= ~(3<<20);
-		LPC_PINCON->PINMODE1 |= (2<<20);
+		LPC_PINCON->PINMODE1 |= (1<<20);
 	}
 	if ((chsel>>4)&1) {
 		//Select required ADC inputPin
 		LPC_PINCON->PINSEL3 &= ~(3<<28);
-		LPC_PINCON->PINSEL3 |= (1<<28);
+		LPC_PINCON->PINSEL3 |= (3<<28);
 		//Select mode for input pins to no pullup nor pulldown
 		LPC_PINCON->PINMODE3 &= ~(3<<28);
-		LPC_PINCON->PINMODE3 |= (2<<28);
+		LPC_PINCON->PINMODE3 |= (1<<28);
 	}
 	if ((chsel>>5)&1) {
 		//Select required ADC inputPin
 		LPC_PINCON->PINSEL3 &= ~(3<<30);
-		LPC_PINCON->PINSEL3 |= (1<<30);
+		LPC_PINCON->PINSEL3 |= (3<<30);
 		//Select mode for input pins to no pullup nor pulldown
 		LPC_PINCON->PINMODE3 &= ~(3<<30);
-		LPC_PINCON->PINMODE3 |= (2<<30);
+		LPC_PINCON->PINMODE3 |= (1<<30);
 	}
 
 	//Eanble 25Mhz Clock
-	LPC_SC->PCLKSEL0&=~(3<<24); //CCLK/4
+	//LPC_SC->PCLKSEL0&=~(3<<24); //CCLK/4
+	LPC_SC->PCLKSEL0 |= (1<<24); //CLK
 	//Set the ADCR register without the select field SEL. 
 	LPC_ADC->ADCR|=(CLKDIV<<8);	
 	//PDN

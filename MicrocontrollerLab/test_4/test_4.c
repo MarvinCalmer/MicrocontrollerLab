@@ -45,25 +45,29 @@ int main(void)
 	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"LM35 AD0.3 ");
 
-//	LPC_SC->PCLKSEL0 &=~(3<<24);
-//	LPC_SC->PCLKSEL0 |=(1<24);
+	//	LPC_SC->PCLKSEL0 &=~(3<<24);
+	//	LPC_SC->PCLKSEL0 |=(1<24);
+	// set Clock in adc.c
+	
 	LPC_PINCON->PINMODE4 &= ~(3<<10);
 	LPC_PINCON->PINMODE4 |= (2<<10);
 	
 	LPC_GPIO2->FIODIR |= (1 << 5);
 	
 	ADC_Init ((1<<3),0); //initialize channel 3 without interrupt -
+	// Set P2.0 high before ADC conversion starts
+	LPC_GPIO2->FIOSET = (1 << 5); 
+	
 	ADC_StartCnv ((1<<3), 0);
 	while(1){
-		// Set P2.0 high before ADC conversion starts
-		LPC_GPIO2->FIOSET = (1 << 5); 
+
     // Wait for ADC conversion to complete
 		while (!((ADC_Stat() >> 3) & 1)); 
 
 		// Retrieve ADC result for channel 3
 		result3 = ADC_GetValue(3); 
 		
-				// Set P2.0 low after ADC conversion ends
+		// Set P2.0 low after ADC conversion ends
 		LPC_GPIO2->FIOCLR = (1 << 5);
 		// Start ADC conversion on channel 3
 		ADC_StartCnv((1<<3), 0);		
@@ -156,9 +160,6 @@ int main(void)
 	
 	ADC_Init ((1<<3)|(1<<4)|(1<<5),0); //initialize channel 3 without interrupt -
 
-
-
-	
 	while(1){
 		ADC_StartCnv ((1<<3), 0);
 		while (!((ADC_Stat ()>>3)&1));//wait for end of conversion
@@ -287,8 +288,8 @@ void DAC_Init(void) {
     LPC_PINCON->PINMODE1 &= ~(3 << 20);
     LPC_PINCON->PINMODE1 |= (2 << 20);
 
-    // Set DAC clock (PCLK/4), PCLKSEL0[25:24] = 00
-    LPC_SC->PCLKSEL0 &= ~(3 << 24);
+    // Set DAC clock (PCLK), PCLKSEL0[25:24] = 01
+    LPC_SC->PCLKSEL0 |= (1<<24); //CLK
 }
 
 void generateTriangleWave(void) {
@@ -312,13 +313,13 @@ void SysTick_Handler (void) {
 		else
 			i=0;
 		
-		LPC_GPIO2->FIOPIN ^= (1 << 5);  // Toggle P2.5
+//		LPC_GPIO2->FIOPIN ^= (1 << 5);  // Toggle P2.5
 }
 
 
 int main(void)
 {	
-	SysTick_Config(SystemCoreClock/1000); // 1ms clock
+	SysTick_Config(SystemCoreClock/1000000); // 1ms clock
 	SystemCoreClockUpdate();
 	
 	GLCD_Init();
@@ -347,6 +348,8 @@ int main(void)
 	
 	while(1)
 	{
+		LPC_GPIO2->FIOPIN ^= (1 << 5);  // Toggle P2.5
+		
 		GLCD_DisplayString(6,10,FONT_16x24,(unsigned char*) lcd_dez(i));	
 		GLCD_DisplayString(7,10,FONT_16x24,(unsigned char*) lcd_dez(sdata[i]));	
 		GLCD_DisplayString(8,10,FONT_16x24,(unsigned char*) AD_Volt(sdata[i])); // currentlsy not working correctly
@@ -385,11 +388,13 @@ void DAC_Timer_Init(void) {
     LPC_DAC->DACCNTVAL = 99;
     
     // Enable the DAC timer by setting the CNT_ENA bit in DACCTRL
-    LPC_DAC->DACCTRL |= (1 << 2);  // CNT_ENA bit to start countdown timer
-
-    // Enable DMA burst request generation (INT_DMA_REQ) on timer countdown
+		LPC_DAC->DACCTRL |= (1 << 2);  // CNT_ENA bit to start countdown timer
+		// for testing
+		//LPC_DAC->DACCTRL &= ~(1 << 2);  // Setzt das CNT_ENA-Bit (Bit 2) auf 0
+    
+		// Enable DMA burst request generation (INT_DMA_REQ) on timer countdown
     LPC_DAC->DACCTRL |= (1 << 3);  // DMA_ENA bit to route DMA requests to GPDMA
-		
+
 		// Vllt das noch 
 		LPC_DAC->DACCTRL &= ~(1<<1); //disable the DACR double-buffering mode
 		LPC_DAC->DACCTRL |= 9;
@@ -411,15 +416,9 @@ int main(void)
 	DAC_Init();
 	generateTriangleWave();
 	//TEST
+	DAC_Timer_Init(); // Initialisiere den DAC-Timer
 	DMA_DAC_func (sdata,200);
-	LPC_DAC->DACCTRL |= (1<<2); //enable timer -> time out counter auf 1
-	LPC_DAC->DACCNTVAL = 99;
-	LPC_DAC->DACCTRL &= ~(1<<1); //disable the DACR double-buffering mode
-	LPC_DAC->DACCTRL |= 9;
-
 	
-//	DMA_DAC_func(sdata, SIZE); // Starte den DMA-Transfer
-//	DAC_Timer_Init(); // Initialisiere den DAC-Timer
 	// Konfiguriere P2.5 als Ausgang für Toggling
 	LPC_GPIO2->FIODIR |= (1 << 5);  // Setze P2.5 als Ausgang
 	
