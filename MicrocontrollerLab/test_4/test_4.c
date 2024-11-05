@@ -40,29 +40,33 @@ int main(void)
 	GLCD_SetTextColor(Blue);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)" Microproc tech lab  ");
 	GLCD_DisplayString(1,0,FONT_16x24,(unsigned char*)" test4.11: ADC conv  ");
-	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"      Group11      ");
+	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"      Group11        ");
 	GLCD_SetBackColor(White);
 	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"LM35 AD0.3 ");
+
+//	LPC_SC->PCLKSEL0 &=~(3<<24);
+//	LPC_SC->PCLKSEL0 |=(1<24);
+	LPC_PINCON->PINMODE4 &= ~(3<<10);
+	LPC_PINCON->PINMODE4 |= (2<<10);
 	
+	LPC_GPIO2->FIODIR |= (1 << 5);
 	
 	ADC_Init ((1<<3),0); //initialize channel 3 without interrupt -
 	ADC_StartCnv ((1<<3), 0);
 	while(1){
 		// Set P2.0 high before ADC conversion starts
-		LPC_GPIO2->FIOSET = (1 << 0); 
-
-		// Start ADC conversion on channel 3
-		ADC_StartCnv((1<<3), 0);
-
-        // Wait for ADC conversion to complete
+		LPC_GPIO2->FIOSET = (1 << 5); 
+    // Wait for ADC conversion to complete
 		while (!((ADC_Stat() >> 3) & 1)); 
-
-		// Set P2.0 low after ADC conversion ends
-		LPC_GPIO2->FIOCLR = (1 << 0); 
 
 		// Retrieve ADC result for channel 3
 		result3 = ADC_GetValue(3); 
+		
+				// Set P2.0 low after ADC conversion ends
+		LPC_GPIO2->FIOCLR = (1 << 5);
+		// Start ADC conversion on channel 3
+		ADC_StartCnv((1<<3), 0);		
 
         // Display the result on the GLCD
 		GLCD_DisplayString(6,13,FONT_16x24,(unsigned char*)lcd_dez(result3));

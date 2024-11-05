@@ -209,7 +209,7 @@ int main(void)
 	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"up:");
 	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"down:");
-	GLCD_DisplayString(7,0,FONT_16x24,(unsigned char*)"left:");
+	GLCD_DisplayString(7,0,FONT_16x24,(unsigned char*)"left :");
 	GLCD_DisplayString(8,0,FONT_16x24,(unsigned char*)"right:");
 	GLCD_Simulation();
 	
@@ -233,9 +233,9 @@ int main(void)
 //================================================================================
 #if (T3_4 == 1)
 
-uint8_t 	direction, pattern=0, delay=5;
-#define min_delay 1
-#define max_delay 10
+uint16_t 	direction, pattern=0, delay=500;
+#define min_delay 100
+#define max_delay 1000
 
 void rolchar(uint8_t* value, uint8_t dir) {
     if (dir == 1) { // Rotate left
@@ -290,7 +290,7 @@ void EINT3_IRQHandler(){
 		if(LPC_GPIOINT->IO0IntStatR&(1<<21)) 
 		{	
 			if(delay>min_delay){
-				delay--;
+				delay-=100;
 			}
 			//reset IRQ
 			LPC_GPIOINT->IO0IntClr=(1<<21);
@@ -300,7 +300,7 @@ void EINT3_IRQHandler(){
 		if(LPC_GPIOINT->IO0IntStatR&(1<<27)) 
 		{	
 			if(delay<max_delay){
-				delay++; 
+				delay+=100; 
 			} 
 			//reset IRQ
 			LPC_GPIOINT->IO0IntClr=(1<<27);
@@ -343,11 +343,11 @@ int main(void)
 	GLCD_SetBackColor(DarkGreen);
 	GLCD_SetTextColor(White);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Microproc tech lab   ");
-	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"test3.3 running light");
-	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
-	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"running light");
+	GLCD_DisplayString(1,0,FONT_16x24,(unsigned char*)"test3.3 running light");
+	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"Group 11             ");
 	GLCD_SetBackColor(White);
 	GLCD_SetTextColor(Black);
+	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"running light");
 	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"delay(ms):");
 	GLCD_DisplayString(7,0,FONT_16x24,(unsigned char*)"direction:");
 	GLCD_DisplayString(8,0,FONT_16x24,(unsigned char*)"pattern:");
@@ -355,7 +355,7 @@ int main(void)
 	
 	while(1)
 	{
-		GLCD_DisplayString(6,10,FONT_16x24,(unsigned char*)lcd_dez(delay*10));
+		GLCD_DisplayString(6,10,FONT_16x24,(unsigned char*)lcd_dez(delay));
 		if(direction)
 			GLCD_DisplayString(7,10,FONT_16x24,(unsigned char*)"right");
 		else
@@ -414,65 +414,75 @@ int main(void)
 	GLCD_Clear(White);
 	GLCD_SetBackColor(DarkGreen);
 	GLCD_SetTextColor(White);
-	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Lab Microprocessor");
-	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"Test3.4 Running Light");
-	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
+	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Lab Microprocessor   ");
+	GLCD_DisplayString(1,0,FONT_16x24,(unsigned char*)"Test3.4 Running Light");
+	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"Group 11             ");
 	GLCD_SetBackColor(White);
 	GLCD_SetTextColor(Black);
-	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"Counter:");
+	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Counter:");
 	GLCD_Simulation();
 	while(1)
 	{
 			if(count_encoder==1){
 				GLCD_SetTextColor(Black);
-				RGB_Out(00000010);
+				RGB_Off(0); 
+				RGB_On(1);  
+				RGB_Off(2); 
 				GLCD_Simulation();
 			}
 			
 			else 
 				GLCD_SetTextColor(LightGrey);
-			GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"Red light:");
+			GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"Red light:");
 			
 			if(count_encoder==2){
 				GLCD_SetTextColor(Black);
-				RGB_Out(00000100);
+				RGB_On(2); 
+				RGB_Off(0);  
+				RGB_Off(1); 
 				GLCD_Simulation();
 			}
 			else 
 				GLCD_SetTextColor(LightGrey);
-			GLCD_DisplayString(7,0,FONT_16x24,(unsigned char*)"Green light:");
+			GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"Green light:");
 						
 			if(count_encoder==3){
 				GLCD_SetTextColor(Black);
-				RGB_Out(00000001);
+				RGB_Off(1); 
+				RGB_On(0);  
+				RGB_Off(2); 
 				GLCD_Simulation();
 			}
 			else 
 				GLCD_SetTextColor(LightGrey);
-			GLCD_DisplayString(8,0,FONT_16x24,(unsigned char*)"Blue light:");
+			GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"Blue light:");
 						
 			if(count_encoder==4){
 				GLCD_SetTextColor(Black);
-				RGB_Out(00000001);
+				RGB_Off(0); 
+				RGB_On(1);  
+				RGB_On(2); 
 				GLCD_Simulation();
 			}
 			else 
 				GLCD_SetTextColor(LightGrey);
-			GLCD_DisplayString(9,0,FONT_16x24,(unsigned char*)"Orange light:");
+			GLCD_DisplayString(7,0,FONT_16x24,(unsigned char*)"Orange light:");
 						
 			if(count_encoder==5){
 				GLCD_SetTextColor(Black);
-				RGB_Out(00000101);
+				RGB_Off(0); 
+				RGB_Off(1);  
+				RGB_Off(2); 
 				GLCD_Simulation();
 			}
 			else 
 				GLCD_SetTextColor(LightGrey);
-			GLCD_DisplayString(10,0,FONT_16x24,(unsigned char*)"No light:");
+			GLCD_DisplayString(8,0,FONT_16x24,(unsigned char*)"No light:");
 			RGB_Out(00000000);
 			GLCD_Simulation();
 			
 			GLCD_SetTextColor(Black);
-			GLCD_DisplayString(5,10,FONT_16x24,(unsigned char*)lcd_dez(count_encoder));
+			GLCD_DisplayString(3,8,FONT_16x24,(unsigned char*)lcd_dez(count_encoder));
 			GLCD_Simulation();
 	} // end while(1)
 }	// end main()
@@ -490,6 +500,7 @@ int main(void)
 uint32_t time_sec, time_min, time_h;
 uint32_t set_time_sec, set_time_min, set_time_h;
 uint16_t digit_pos=0, set_Time=0;
+uint16_t ticks=0;
 
 
 char*lcd_time(uint8_t time_h,uint8_t time_min,uint8_t time_sec)
@@ -509,7 +520,9 @@ char*lcd_time(uint8_t time_h,uint8_t time_min,uint8_t time_sec)
 
 void SysTick_Handler(void)
 {
-	time_sec++;
+	
+	if(ticks++ >=99)
+	{ticks=0;time_sec++;}
 }
 
 void EINT3_IRQHandler(){
@@ -564,7 +577,7 @@ void EINT3_IRQHandler(){
 					set_time_h-=1;
 				}
 				//set third Digit
-				if(digit_pos==2 && set_time_min>=60){
+				if(digit_pos==2 && set_time_min>=10){
 					set_time_min-=10;
 				}
 				//Set fourth Digit
@@ -572,7 +585,7 @@ void EINT3_IRQHandler(){
 					set_time_min-=1;
 				}				
 				//set third Digit
-				if(digit_pos==4 && set_time_sec>=60){
+				if(digit_pos==4 && set_time_sec>=10){
 					set_time_sec-=10;
 				}
 				//Set fourth Digit
@@ -632,9 +645,9 @@ int main(void)
 	GLCD_Clear(White);
 	GLCD_SetBackColor(DarkGreen);
 	GLCD_SetTextColor(White);
-	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Lab Microprocessor");
-	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"Test3.5 Encoder");
-	GLCD_DisplayString(3,0,FONT_16x24,(unsigned char*)"Group 11 ");
+	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)"Lab Microprocessor  ");
+	GLCD_DisplayString(1,0,FONT_16x24,(unsigned char*)"Test3.5 Encoder     ");
+	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"Group 11            ");
 	GLCD_SetBackColor(White);
 	GLCD_SetTextColor(Black);
 	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"Actual Time of Day:");
