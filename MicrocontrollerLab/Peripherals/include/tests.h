@@ -59,10 +59,9 @@ description: control of compilation of test_n.c
 #define T41_2 0
 #define T41_3 0
 #define T41_4 0
-#define T41_5 0
-#define T41_6 1
-#define T42_1 0
-#define T42_2 0
+#define T41_5 1
+#define T41_6 0
+#define T41_7 0
 //********************************************************************************
 
 // test5

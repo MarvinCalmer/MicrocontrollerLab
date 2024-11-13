@@ -1,6 +1,6 @@
 Dependencies for Project 'test_4', Target 'RAM': (DO NOT MODIFY !)
 CompilerVersion: 6190000::V6.19::ARMCLANG
-F (.\test_4.c)(0x6723AB3F)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -I ../Peripherals/include-I./RTE/Device/LPC1769-I./RTE/_RAM-IC:/Keil/ARM/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil/ARM/Packs/Keil/LPC1700_DFP/2.7.2/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -D__TARGET_HW-o ./objects/test_4.o -MD)
+F (.\test_4.c)(0x672CE3BA)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -I ../Peripherals/include-I./RTE/Device/LPC1769-I./RTE/_RAM-IC:/Keil/ARM/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil/ARM/Packs/Keil/LPC1700_DFP/2.7.2/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -D__TARGET_HW-o ./objects/test_4.o -MD)
 I (C:\Keil\ARM\Packs\Keil\LPC1700_DFP\2.7.2\Device\Include\LPC17xx.h)(0x65C63E3E)
 I (C:\Keil\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h)(0x626F9F3E)
 I (C:\Keil\ARM\ARMCLANG\include\stdint.h)(0x63889D68)
@@ -9,7 +9,7 @@ I (C:\Keil\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F
 I (C:\Keil\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F9F3E)
 I (C:\Keil\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F9F3E)
 I (C:\Keil\ARM\Packs\Keil\LPC1700_DFP\2.7.2\Device\Include\system_LPC17xx.h)(0x65C63E3E)
-I (..\Peripherals\include\tests.h)(0x6723A4B7)
+I (..\Peripherals\include\tests.h)(0x672CDFBE)
 I (..\Peripherals\include\GLCD.h)(0x670551B0)
 I (..\Peripherals\include\adc.h)(0x6717BD24)
 I (..\Peripherals\include\lcd.h)(0x670EAEB8)
@@ -51,7 +51,7 @@ I (C:\Keil\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F
 I (C:\Keil\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F9F3E)
 I (C:\Keil\ARM\Packs\Keil\LPC1700_DFP\2.7.2\Device\Include\system_LPC17xx.h)(0x65C63E3E)
 I (..\Peripherals\include\gpio.h)(0x6706B9B6)
-F (..\Peripherals\src\adc.c)(0x6723AB76)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -I ../Peripherals/include-I./RTE/Device/LPC1769-I./RTE/_RAM-IC:/Keil/ARM/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil/ARM/Packs/Keil/LPC1700_DFP/2.7.2/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -D__TARGET_HW-o ./objects/adc.o -MD)
+F (..\Peripherals\src\adc.c)(0x672A1F8A)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -I ../Peripherals/include-I./RTE/Device/LPC1769-I./RTE/_RAM-IC:/Keil/ARM/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil/ARM/Packs/Keil/LPC1700_DFP/2.7.2/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -D__TARGET_HW-o ./objects/adc.o -MD)
 I (C:\Keil\ARM\Packs\Keil\LPC1700_DFP\2.7.2\Device\Include\LPC17xx.h)(0x65C63E3E)
 I (C:\Keil\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h)(0x626F9F3E)
 I (C:\Keil\ARM\ARMCLANG\include\stdint.h)(0x63889D68)
@@ -65,7 +65,7 @@ F (..\Peripherals\include\adc.h)(0x6717BD24)()
 F (..\Peripherals\src\lcd.c)(0x671A64A0)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -I ../Peripherals/include-I./RTE/Device/LPC1769-I./RTE/_RAM-IC:/Keil/ARM/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil/ARM/Packs/Keil/LPC1700_DFP/2.7.2/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -D__TARGET_HW-o ./objects/lcd.o -MD)
 I (..\Peripherals\include\lcd.h)(0x670EAEB8)
 I (C:\Keil\ARM\ARMCLANG\include\stdint.h)(0x63889D68)
-I (..\Peripherals\include\tests.h)(0x6723A4B7)
+I (..\Peripherals\include\tests.h)(0x672CDFBE)
 I (C:\Keil\ARM\Packs\Keil\LPC1700_DFP\2.7.2\Device\Include\LPC17xx.h)(0x65C63E3E)
 I (C:\Keil\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm3.h)(0x626F9F3E)
 I (C:\Keil\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F9F3E)
@@ -85,7 +85,7 @@ I (C:\Keil\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F
 I (C:\Keil\ARM\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\mpu_armv7.h)(0x626F9F3E)
 I (C:\Keil\ARM\Packs\Keil\LPC1700_DFP\2.7.2\Device\Include\system_LPC17xx.h)(0x65C63E3E)
 F (RTE/Device/LPC1769/RTE_Device.h)(0x670551B0)()
-F (RTE/Device/LPC1769/startup_LPC17xx.s)(0x670551B0)(--target=arm-arm-none-eabi -mcpu=cortex-m3 -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4-I./RTE/Device/LPC1769-I./RTE/_RAM-IC:/Keil/ARM/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil/ARM/Packs/Keil/LPC1700_DFP/2.7.2/Device/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 538" -Wa,armasm,--pd,"_RTE_ SETA 1" -Wa,armasm,--pd,"LPC175x_6x SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o ./objects/startup_lpc17xx.o)
+F (RTE/Device/LPC1769/startup_LPC17xx.s)(0x672CD536)(--target=arm-arm-none-eabi -mcpu=cortex-m3 -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4-I./RTE/Device/LPC1769-I./RTE/_RAM-IC:/Keil/ARM/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil/ARM/Packs/Keil/LPC1700_DFP/2.7.2/Device/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 538" -Wa,armasm,--pd,"_RTE_ SETA 1" -Wa,armasm,--pd,"LPC175x_6x SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o ./objects/startup_lpc17xx.o)
 F (RTE/Device/LPC1769/system_LPC17xx.c)(0x670551B2)(-xc --target=arm-arm-none-eabi -mcpu=cortex-m3 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -I ../Peripherals/include-I./RTE/Device/LPC1769-I./RTE/_RAM-IC:/Keil/ARM/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Keil/ARM/Packs/Keil/LPC1700_DFP/2.7.2/Device/Include-D__UVISION_VERSION="538" -D_RTE_ -DLPC175x_6x -D_RTE_ -D__TARGET_HW-o ./objects/system_lpc17xx.o -MD)
 I (C:\Keil\ARM\ARMCLANG\include\stdint.h)(0x63889D68)
 I (C:\Keil\ARM\Packs\Keil\LPC1700_DFP\2.7.2\Device\Include\LPC17xx.h)(0x65C63E3E)

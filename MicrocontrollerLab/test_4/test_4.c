@@ -100,9 +100,9 @@ int main(void)
 	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"      Group 11      ");
 	GLCD_SetBackColor(White);
 	GLCD_SetTextColor(Black);
-	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"POT1 AD0.4 ");
-	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"POT2 AD0.5 ");
-	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"LM35 AD0.3 ");	
+	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"POT1 AD0.4 ");
+	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"POT2 AD0.5 ");
+	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"LM35 AD0.3 ");	
 	
 	ADC_Init ((1<<3)|(1<<4)|(1<<5),0); //initialize channel 3 without interrupt -
 
@@ -153,9 +153,9 @@ int main(void)
 	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"      Group 11      ");
 	GLCD_SetBackColor(White);
 	GLCD_SetTextColor(Black);
-	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"POT1 AD0.4 ");
-	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"POT2 AD0.5 ");
-	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"LM35 AD0.3 ");	
+	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"POT1 AD0.4 ");
+	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"POT2 AD0.5 ");
+	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"LM35 AD0.3 ");	
 	
 	
 	ADC_Init ((1<<3)|(1<<4)|(1<<5),0); //initialize channel 3 without interrupt -
@@ -268,120 +268,25 @@ int main(void)
 volatile uint32_t i = 0; 
 uint32_t sdata [SIZE];
 
-//Amplitude
-//   ^
-//U_MAX    |         /\        /\        /\        /\        /\
-// 	       |        /  \      /  \      /  \      /  \      /  \
-// 			   |       /    \    /    \    /    \    /    \    /    \
-// 	  		 |      /      \  /      \  /      \  /      \  /      \
-// 	   	 0 |-----/--------\/--------\/--------\/--------\/--------\-----> Time
-//		  	 |    T/2      T        3T/2      2T       5T/2      3T
-//  			 |
-//U_MIN
-
-void DAC_Init(void) {
-    // Select AOUT for P0.26, PINSEL1[21:20] = 10
-    LPC_PINCON->PINSEL1 &= ~(3 << 20);
-    LPC_PINCON->PINSEL1 |= (2 << 20);
-    
-    // Set no pull-up and no pull-down, PINMODE1[21:20] = 10
-    LPC_PINCON->PINMODE1 &= ~(3 << 20);
-    LPC_PINCON->PINMODE1 |= (2 << 20);
-
-    // Set DAC clock (PCLK), PCLKSEL0[25:24] = 01
-    LPC_SC->PCLKSEL0 |= (1<<24); //CLK
-}
-
 void generateTriangleWave(void) {
     int highpoint = SIZE / 2;
     for (int i = 0; i < highpoint; i++) {
         sdata[i] = (U_MAX * i) / highpoint;  // Rising edge
+				sdata[i] =(sdata[i])<<2;
     }
     for (int i = highpoint; i < SIZE; i++) {
-        sdata[i] = U_MAX - ((U_MAX * (i - highpoint)) / highpoint);  // Falling edge
+        sdata[i] = ((U_MAX - ((U_MAX * (i - highpoint)) / highpoint)));  // Falling edge
+				sdata[i] =(sdata[i])<<2;
     }
+		
 	}
 
-
-void SysTick_Handler (void) {
-	
-		// DAC_Out
-		//voltage at P0.26/AOUT : value/1023*VAREF(3,3V)
-		LPC_DAC->DACR=((sdata[i]&0x3FF)<<6); 
-		if(i<=SIZE)
-			i++;	
-		else
-			i=0;
-		
-//		LPC_GPIO2->FIOPIN ^= (1 << 5);  // Toggle P2.5
-}
-
-
-int main(void)
-{	
-	SysTick_Config(SystemCoreClock/1000000); // 1ms clock
-	SystemCoreClockUpdate();
-	
-	GLCD_Init();
-	GLCD_Clear(White);
-	GLCD_SetBackColor(Yellow);
-	GLCD_SetTextColor(Blue);
-	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)" Microproc tech lab  ");
-	GLCD_DisplayString(1,0,FONT_16x24,(unsigned char*)" test4.2.1: DAC ");
-	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"      Group 11       ");
-	GLCD_SetBackColor(White);
-	GLCD_SetTextColor(Black);
-	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"output: 		");
-	GLCD_DisplayString(4,10,FONT_16x24,(unsigned char*)"triangle");
-	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"Period: 		");
-	GLCD_DisplayString(5,10,FONT_16x24,(unsigned char*)lcd_dez(PERIOD));
-	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"index:  		");	
-	GLCD_DisplayString(7,0,FONT_16x24,(unsigned char*)"sdata[i]:  ");	
-	GLCD_DisplayString(8,0,FONT_16x24,(unsigned char*)"U_out:  		"); 
-	GLCD_Simulation();
-	
-	DAC_Init();
-	generateTriangleWave();
-	
-	// Configure P2.5 as output for toggling
-	LPC_GPIO2->FIODIR |= (1 << 5);  // Set P2.5 as output
-	
-	while(1)
-	{
-		LPC_GPIO2->FIOPIN ^= (1 << 5);  // Toggle P2.5
-		
-		GLCD_DisplayString(6,10,FONT_16x24,(unsigned char*) lcd_dez(i));	
-		GLCD_DisplayString(7,10,FONT_16x24,(unsigned char*) lcd_dez(sdata[i]));	
-		GLCD_DisplayString(8,10,FONT_16x24,(unsigned char*) AD_Volt(sdata[i])); // currentlsy not working correctly
-		GLCD_Simulation();
-	} // end while(1)
-}	// end main()
-
-#endif
-
-//
-//================================================================================
-//  Test T41_6 Same as above but with DMA
-//================================================================================
-#if (T41_6==1)
-
-#define SIZE 200
-#define PERIOD 200 // 200 ms == T
-#define U_MAX 1023 
-#define U_MIN 0//range 0 to 3.3V
-
-volatile uint32_t i = 0; 
-uint32_t sdata [SIZE];
-
-void generateTriangleWave(void) {
-    int highpoint = SIZE / 2;
-    for (int i = 0; i < highpoint; i++) {
-        sdata[i] = (U_MAX * i) / highpoint;  // Rising edge
-    }
-    for (int i = highpoint; i < SIZE; i++) {
-        sdata[i] = U_MAX - ((U_MAX * (i - highpoint)) / highpoint);  // Falling edge
-    }
-	}
+//void generateSinusoidalWave(void) {
+//	for (int i = 0; i < SIZE; i++) {
+//			// Generate sinusoidal values
+//			sdata[i] = ((int32_t)((sin(i * 3.14159265359 / 100) * 500 + 500))&0x3FF)<<6; // 0 to 1023 (0x3FF)
+//	}
+//}
 
 void DAC_Timer_Init(void) {
     // Set the reload value to 99 for a 1µs period (100MHz / 1MHz = 100, so 100 - 1 = 99)
@@ -408,6 +313,8 @@ void DAC_Init(void) {
     // Set no pull-up and no pull-down, PINMODE1[21:20] = 10
     LPC_PINCON->PINMODE1 &= ~(3 << 20);
     LPC_PINCON->PINMODE1 |= (2 << 20);
+	    // Set DAC clock (PCLK), PCLKSEL0[25:24] = 01
+    LPC_SC->PCLKSEL0 |= (1<<22); //CLK
 }
 
 
@@ -415,6 +322,7 @@ int main(void)
 {	
 	DAC_Init();
 	generateTriangleWave();
+	//generateSinusoidalWave();
 	//TEST
 	DAC_Timer_Init(); // Initialisiere den DAC-Timer
 	DMA_DAC_func (sdata,200);
@@ -439,6 +347,7 @@ int main(void)
 	GLCD_DisplayString(7,0,FONT_16x24,(unsigned char*)"sdata[i]:  ");	
 	GLCD_DisplayString(8,0,FONT_16x24,(unsigned char*)"U_out:  		");
 	GLCD_Simulation();
+	
 	while(1)
 	{
 		LPC_GPIO2->FIOPIN ^=(1<<5); //set high
@@ -449,6 +358,114 @@ int main(void)
 		LPC_GPIO2->FIOCLR |=(1<<5);  // set low
 	} // end while(1)
 }	// end main()
+
+
+#endif
+
+//
+//================================================================================
+//  Test T41_6 Same as above but with DMA
+//================================================================================
+#if (T41_6==1)
+
+#define SIZE 200
+#define PERIOD 200 // 200 ms == T
+#define U_MAX 1023 
+#define U_MIN 0//range 0 to 3.3V
+
+volatile uint32_t i = 0; 
+uint32_t sdata [SIZE];
+
+//Amplitude
+//   ^
+//U_MAX    |         /\        /\        /\        /\        /\
+// 	       |        /  \      /  \      /  \      /  \      /  \
+// 			   |       /    \    /    \    /    \    /    \    /    \
+// 	  		 |      /      \  /      \  /      \  /      \  /      \
+// 	   	 0 |-----/--------\/--------\/--------\/--------\/--------\-----> Time
+//		  	 |    T/2      T        3T/2      2T       5T/2      3T
+//  			 |
+//U_MIN
+
+void DAC_Init(void) {
+    // Select AOUT for P0.26, PINSEL1[21:20] = 10
+    LPC_PINCON->PINSEL1 &= ~(3 << 20);
+    LPC_PINCON->PINSEL1 |= (2 << 20);
+    
+    // Set no pull-up and no pull-down, PINMODE1[21:20] = 10
+    LPC_PINCON->PINMODE1 &= ~(3 << 20);
+    LPC_PINCON->PINMODE1 |= (2 << 20);
+
+    // Set DAC clock (PCLK), PCLKSEL0[25:24] = 01
+    LPC_SC->PCLKSEL0 |= (1<<22); //CLK
+}
+
+void generateTriangleWave(void) {
+    int highpoint = SIZE / 2;
+    for (int i = 0; i < highpoint; i++) {
+        sdata[i] = (U_MAX * i) / highpoint;  // Rising edge
+    }
+    for (int i = highpoint; i < SIZE; i++) {
+        sdata[i] = U_MAX - ((U_MAX * (i - highpoint)) / highpoint);  // Falling edge
+    }
+	}
+
+	
+
+void SysTick_Handler (void) {
+	
+		// DAC_Out
+		//voltage at P0.26/AOUT : value/1023*VAREF(3,3V)
+		LPC_DAC->DACR=((sdata[i]&0x3FF)<<6); 
+		if(i<=SIZE)
+			i++;	
+		else
+			i=0;
+		
+//		LPC_GPIO2->FIOPIN ^= (1 << 5);  // Toggle P2.5
+}
+
+
+int main(void)
+{	
+	DAC_Init();
+	SystemCoreClockUpdate();
+	SysTick_Config(SystemCoreClock/1000000); // 1ms clock
+	
+	GLCD_Init();
+	GLCD_Clear(White);
+	GLCD_SetBackColor(Yellow);
+	GLCD_SetTextColor(Blue);
+	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)" Microproc tech lab  ");
+	GLCD_DisplayString(1,0,FONT_16x24,(unsigned char*)" test4.2.1: DAC ");
+	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)" Group 11");
+	GLCD_SetBackColor(White);
+	GLCD_SetTextColor(Black);
+	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"output:");
+	GLCD_DisplayString(4,10,FONT_16x24,(unsigned char*)"triangle");
+	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"Period:");
+	GLCD_DisplayString(5,10,FONT_16x24,(unsigned char*)lcd_dez(PERIOD));
+	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"index: ");	
+	GLCD_DisplayString(7,0,FONT_16x24,(unsigned char*)"sdata[i]: ");	
+	GLCD_DisplayString(8,0,FONT_16x24,(unsigned char*)"U_out:"); 
+	GLCD_Simulation();
+	
+	generateTriangleWave();
+	
+	// Configure P2.5 as output for toggling
+	LPC_GPIO2->FIODIR |= (1 << 5);  // Set P2.5 as output
+	
+	while(1)
+	{
+		LPC_GPIO2->FIOPIN ^= (1 << 5);  // Toggle P2.5
+		
+		GLCD_DisplayString(6,10,FONT_16x24,(unsigned char*) lcd_dez(i));	
+		GLCD_DisplayString(7,10,FONT_16x24,(unsigned char*) lcd_dez(sdata[i]));	
+		GLCD_DisplayString(8,10,FONT_16x24,(unsigned char*) AD_Volt(sdata[i])); // currentlsy not working correctly
+		GLCD_Simulation();
+	} // end while(1)
+}	// end main()
+
 
 #endif
 
@@ -521,12 +538,12 @@ int main(void)
 	GLCD_SetTextColor(Blue);
 	GLCD_DisplayString(0,0,FONT_16x24,(unsigned char*)" Microproc tech lab  ");
 	GLCD_DisplayString(1,0,FONT_16x24,(unsigned char*)" test4.2.2: DAC DMA ");
-	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"      Group 11       ");
+	GLCD_DisplayString(2,0,FONT_16x24,(unsigned char*)"Group 11");
 	GLCD_SetBackColor(White);
 	GLCD_SetTextColor(Black);
-	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"output: 		");
+	GLCD_DisplayString(4,0,FONT_16x24,(unsigned char*)"output:");
 	GLCD_DisplayString(4,10,FONT_16x24,(unsigned char*)"triangle");
-	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"Period: 		");
+	GLCD_DisplayString(5,0,FONT_16x24,(unsigned char*)"Period:");
 	GLCD_DisplayString(5,10,FONT_16x24,(unsigned char*)lcd_dez(PERIOD));
 	GLCD_DisplayString(6,0,FONT_16x24,(unsigned char*)"index:  		");	
 	GLCD_DisplayString(7,0,FONT_16x24,(unsigned char*)"sdata[i]:  ");	
@@ -545,19 +562,3 @@ int main(void)
 }	// end main()
 #endif
 
-//
-//================================================================================
-//  Test T42_2
-//================================================================================
-#if (T42_2==1)
-
-int main(void)
-{	
-
-	while(1)
-	{
-		
-	} // end while(1)
-}	// end main()
-
-#endif
